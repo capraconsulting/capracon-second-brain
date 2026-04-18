@@ -1,0 +1,12 @@
+.DS_Store
+*.swp
+*.swo
+.idea/
+.vscode/
+node_modules/
+.env
+.env.local
+
+# Obsidian workspace state (participants' local)
+starter-vault/.obsidian/workspace*
+starter-vault/.obsidian/cache

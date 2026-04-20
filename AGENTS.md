@@ -21,7 +21,7 @@ The repo itself is the **deliverable**: participants point their own agent at it
 - No AWS Bedrock / Azure routing material (separate initiative).
 - No LinkedIn-scraping exercise. `Personal/People/` stays empty in starter-vault.
 
-## The four supported paths
+## The five supported paths
 
 | Path | Knowledge base | Agent | Default |
 |------|----------------|-------|---------|
@@ -29,6 +29,7 @@ The repo itself is the **deliverable**: participants point their own agent at it
 | **B** | Notion | Claude/ChatGPT + Notion MCP | |
 | **C** | M365 SharePoint | Copilot | |
 | **D** | Plain folder of `.md` | Any agent (Cursor, Windsurf, Cline, Codex) | |
+| **E** | Confluence (Atlassian Cloud / DC) | Claude/ChatGPT + Atlassian Rovo MCP | |
 
 A user picks one via the quiz in `START_HERE.md`. Each path needs its own `docs/0X-bootstrap-*.md`.
 
@@ -47,6 +48,7 @@ A user picks one via the quiz in `START_HERE.md`. Each path needs its own `docs/
 │   ├── 02-bootstrap-obsidian.md      # Path A (default)
 │   ├── 03-bootstrap-notion.md        # Path B
 │   ├── 04-bootstrap-sharepoint.md    # Path C
+│   ├── 04b-bootstrap-confluence.md   # Path E
 │   ├── 05-bootstrap-plain.md         # Path D
 │   ├── 06-challenges.md              # The two workshop challenges
 │   └── 07-going-further.md           # Neste steg, inspo, links
@@ -66,15 +68,35 @@ A user picks one via the quiz in `START_HERE.md`. Each path needs its own `docs/
 │   └── Attachments/
 └── .claude/
     └── skills/
-        ├── youtube-transcribe/       # Copied from ~/dev/personal/vault/.claude/skills/youtube-transcribe
-        └── skill-creator/            # Copied from ~/.claude/skills/skill-creator
+        ├── obsidian-vault/           # Core vault conventions (also drives starter-vault/CLAUDE.md)
+        ├── youtube-transcribe/       # Challenge 1
+        ├── skill-creator/            # Challenge 2 guide
+        ├── brainstorming/            # Challenge 2 scoping helper (obra/superpowers)
+        ├── pptx/                     # Bonus: vault -> slides
+        ├── xlsx/                     # Bonus: vault -> spreadsheet
+        └── docx/                     # Bonus: vault -> Word doc
 ```
 
-## Current state (as of 18.04.2026)
+## Current state (as of 18.04.2026, paths B / C / E filled in)
 
-**Scaffolded only.** Directory structure exists. `README.md`, `AGENTS.md`, `CLAUDE.md`, `CONTEXT.md`, `ROADMAP.md` written. Everything else is a TODO.
+**All five bootstrap paths drafted.** Participant-facing flow is complete end-to-end:
 
-See `ROADMAP.md` for the punch list.
+- `README.md`, `AGENTS.md`, `CLAUDE.md`, `CONTEXT.md`, `ROADMAP.md` -- handoff docs
+- `START_HERE.md` -- stack-quiz entry point (5 paths)
+- `docs/01-pick-your-stack.md` -- branching logic
+- `docs/02-bootstrap-obsidian.md` -- Path A (full)
+- `docs/03-bootstrap-notion.md` -- Path B (hosted Notion MCP default, local MCP fallback)
+- `docs/04-bootstrap-sharepoint.md` -- Path C (declarative Copilot agent default, Work IQ SharePoint MCP power-user)
+- `docs/04b-bootstrap-confluence.md` -- Path E (Atlassian Rovo MCP default, `sooperset/mcp-atlassian` fallback, raw REST escape hatch)
+- `docs/05-bootstrap-plain.md` -- Path D (full)
+- `docs/06-challenges.md` -- Challenge 1 (YouTube capture) + Challenge 2 (build `copy-to-clipboard` + `devils-advocate` skills), all 5 paths covered
+- `docs/07-going-further.md` -- inspo, links, next steps
+- `starter-vault/CLAUDE.md` + `AGENTS.md` -- vault conventions (simplified from Magnus' personal vault)
+- `starter-vault/Templates/{Note,Learning,Person,Meeting}.md`
+- `starter-vault/` folder skeleton with `.gitkeep` stubs
+- `.claude/skills/` -- 7 skills bundled: `obsidian-vault`, `youtube-transcribe`, `skill-creator`, `brainstorming`, `pptx`, `xlsx`, `docx`
+
+See `ROADMAP.md` for what is still open. Main TODOs: dry-run on a non-crew colleague, skills verification after fresh clone, QR code / URL slide, wifi-dies backup.
 
 ## Conventions for AI sessions
 
@@ -93,9 +115,11 @@ If you (future AI session) need context and have read access to that vault, read
 
 ## Crew contacts
 
-- **Magnus Rødseth** -- facilitator, owns repo, path A (Obsidian) and D (plain)
+- **Magnus Rødseth** -- facilitator, owns repo, paths A (Obsidian), D (plain), and E (Confluence, authored 18.04.2026)
 - **Rune Lind** -- tech arkitekt, path C (SharePoint)
 - **Vemund Santi** -- tech lead, path B (Notion) and share-out moderator
+
+> Path E has no dedicated floor-walker on workshop day. If a participant picks E, the nearest crew member should roam; Magnus is the fallback since he authored the bootstrap doc.
 
 ## When in doubt
 

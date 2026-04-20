@@ -48,12 +48,13 @@ Mobile web app at [vault.magnusrodseth.com](https://vault.magnusrodseth.com). Ne
 
 The repo *is* the workshop material. Participants point their own agent at it. This matches the talk's core message -- "agent with access to a folder" -- and scales from solo newbie to enterprise-locked Copilot user without code changes.
 
-### Decision 2: Four paths, default A (Obsidian + Claude Code)
+### Decision 2: Five paths, default A (Obsidian + Claude Code)
 
 - **A:** Obsidian + Claude Code -- matches the talk, Magnus' lived setup
 - **B:** Notion -- common in Capra and client orgs
 - **C:** M365 SharePoint + Copilot -- required for enterprise-locked attendees (Håvard's point)
 - **D:** Plain markdown + any agent -- anti-lockin fallback, works with Codex/Cursor/Windsurf
+- **E:** Confluence + Atlassian Rovo MCP -- added 18.04.2026 after realising the Atlassian-client slice of Capra's customer base was unaddressed. Rovo MCP is GA, free, OAuth-based; roughly Notion-parity on setup friction. Community `sooperset/mcp-atlassian` fallback covers locked-down tenants and Data Center.
 
 A stack-quiz in `START_HERE.md` routes participants.
 
@@ -63,10 +64,10 @@ Debated splitting into two tracks. Concluded: 25 people, 105 min, one crew = one
 
 ### Decision 4: Two challenges, not three
 
-- **Challenge 1 (30 min):** YouTube video → AI-extracted learning note → linked into graph. Uses `youtube-transcribe` skill bundled in the repo.
-- **Challenge 2 (30 min):** Write your own skill/subagent using `skill-creator` skill bundled in the repo.
+- **Challenge 1 (30 min):** YouTube video → AI-extracted learning note → linked into graph. Uses `youtube-transcribe` skill bundled in the repo. Demo video (for crew walkthrough): <https://youtu.be/6MBq1paspVU>. Participants can pick their own.
+- **Challenge 2 (30 min):** Build two small skills using `skill-creator` and `brainstorming` skills bundled in the repo: (a) `copy-to-clipboard` (mechanical helper that wraps `pbcopy`), and (b) `devils-advocate` (opinionated thinking-partner persona). Two small skills beats one big skill for beginner-intermediate: more tractable, teaches two different shapes of skill (command wrapper vs reasoning mode).
 
-Dropped LinkedIn-scraping exercise. Dropped Playwright MCP demo as an exercise (it stays in the talk). Dropped Bedrock-routing (separate track).
+Dropped LinkedIn-scraping exercise. Dropped Playwright MCP demo as an exercise (it stays in the talk). Dropped Bedrock-routing (separate track). Dropped Dataview dashboard bonus (105 min is already tight).
 
 ### Decision 5: Frontmatter-enforced starter vault
 
@@ -74,7 +75,13 @@ Starter-vault ships with a simplified version of Magnus' vault `CLAUDE.md`. Conv
 
 ### Decision 6: Copy skills, don't reference
 
-`youtube-transcribe` and `skill-creator` get copied into `.claude/skills/` in the repo. Reason: participants shouldn't need to install anything else, and the skills work offline once the repo is cloned.
+Skills get copied into `.claude/skills/` in the repo so participants don't need to install anything else and the skills work offline once cloned. Bundled set:
+
+- `obsidian-vault` (core conventions, sourced from `~/.claude/skills/obsidian-vault`)
+- `youtube-transcribe` (for Challenge 1, sourced from `~/dev/personal/vault/.claude/skills/youtube-transcribe`)
+- `skill-creator` (for Challenge 2 guide, sourced from `~/.claude/skills/skill-creator`)
+- `brainstorming` (for Challenge 2 scoping, sourced from [obra/superpowers](https://github.com/obra/superpowers))
+- `pptx`, `xlsx`, `docx` (bonus: vault-to-deliverable exports, sourced from [anthropics/skills](https://github.com/anthropics/skills))
 
 ---
 

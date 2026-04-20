@@ -1,0 +1,162 @@
+# 03 - Bootstrap: Notion + Claude/ChatGPT via Notion MCP (Path B)
+
+> **For the agent.** Path B participant picked Notion as their knowledge base and Claude (Code, Desktop, or claude.ai) or ChatGPT as their agent. Target time: 15 minutes.
+
+---
+
+## Goal
+
+By the end of this doc, the participant has:
+
+1. A Notion workspace with a "Second Brain" parent page and the standard sub-structure
+2. Notion MCP connected to their agent (hosted, OAuth-based, no tokens)
+3. The agent has read the conventions from `starter-vault/CLAUDE.md` (adapted for Notion)
+4. One real page saved in `Learning` or `Notes` with the right properties and at least 2 `@page` mentions
+
+---
+
+## Step 1: Notion workspace setup
+
+Ask the participant to open Notion and create a top-level page called **"Second Brain"** (or whatever they want). Inside it, create:
+
+- `Personal/` (plain page, child pages for anything private)
+- `Projects/` (plain page, one child per active project)
+- `Meetings/` (**database** with properties: `type` select, `attendees` multi-select, `date` date)
+- `Learning/` (**database** with properties: `type` select, `source` URL, `author` text, `status` select, `tags` multi-select)
+- `Reference/` (plain page, child pages for docs / cheatsheets / links)
+- `Notes/` (plain page, child pages for loose notes)
+
+Recommendation: use Notion databases for `Learning` and `Meetings` (where structured queries matter). Plain pages are fine everywhere else. Databases map 1:1 to frontmatter fields in the starter-vault `.md` files:
+
+| Frontmatter (Obsidian) | Notion property |
+|-----------------------|-----------------|
+| `type` | Select |
+| `created` | Created time (auto) |
+| `tags` | Multi-select |
+| `related` | Relation to other pages |
+| `status` | Select |
+| `source`, `author` | URL, Text |
+
+---
+
+## Step 2: Connect Notion MCP (hosted, recommended)
+
+Notion runs a hosted MCP server at `https://mcp.notion.com/mcp`. OAuth handles auth. **No integration token, no `npx` install, no JSON editing.** The old local-install path still works but Notion has flagged it for deprecation.
+
+**Claude Code** (one command, no config file):
+
+```bash
+claude mcp add --transport http notion https://mcp.notion.com/mcp
+```
+
+Then inside a Claude Code session, run `/mcp` and complete the OAuth flow in the browser. Add `--scope user` if they want it available across all projects.
+
+**Claude Desktop** (claude.ai app): Settings -> **Connectors** -> add Notion. The connector is built in.
+
+> Requires Claude Pro / Max / Team / Enterprise. Free Claude Desktop accounts cannot add remote MCP connectors. If the participant is on a free plan, either switch to Claude Code (handles OAuth on any plan) or jump to Step 2b.
+
+**ChatGPT**: Settings -> **Connectors** -> enable Notion (Plus / Pro / Business / Enterprise). Same OAuth flow, same result. ChatGPT can search, read, and create Notion pages without MCP at all.
+
+**Cursor**: `~/.cursor/mcp.json`:
+
+```json
+{
+  "mcpServers": {
+    "notion": {
+      "url": "https://mcp.notion.com/mcp"
+    }
+  }
+}
+```
+
+During OAuth, Notion asks which pages / workspaces the agent should access. Pick the **"Second Brain"** parent page (or the whole workspace if they are brave).
+
+---
+
+## Step 2b: Fallback -- local MCP server
+
+Only needed for free-tier Claude Desktop users, or if the participant explicitly wants the self-hosted route.
+
+1. Create an internal integration at <https://www.notion.so/profile/integrations> -> **New integration**. Capabilities: Read, Insert, Update content. Copy the `ntn_...` secret.
+2. In Notion, open the **"Second Brain"** parent page -> three-dot menu -> **Connections** -> pick the integration. **This step is the single most common cause of "no pages found" errors.**
+3. Drop this into `~/Library/Application Support/Claude/claude_desktop_config.json`:
+
+   ```json
+   {
+     "mcpServers": {
+       "notionApi": {
+         "command": "npx",
+         "args": ["-y", "@notionhq/notion-mcp-server"],
+         "env": {
+           "NOTION_TOKEN": "ntn_paste_the_token_here"
+         }
+       }
+     }
+   }
+   ```
+
+4. Restart Claude Desktop.
+
+---
+
+## Step 3: Teach the agent the conventions
+
+Save a copy of `starter-vault/CLAUDE.md` as a Notion page called **"Vault Instructions"** inside the "Second Brain" parent. Adjust terminology:
+
+- Replace "folder" with "page" or "database"
+- Replace `[[wiki links]]` with Notion `@page` mentions or inline page links
+- Replace YAML frontmatter with database properties (see the mapping table in Step 1)
+
+Then tell the agent:
+
+> *"Read the 'Vault Instructions' page in my Notion workspace and confirm you understand the conventions. Then list the top-level pages you can see under 'Second Brain'."*
+
+Verify the agent can recite:
+- Which page types go where (`Learning`, `Meetings`, `Notes`, ...)
+- The property schema for `Learning` and `Meetings` databases
+- The linking rule: 2-3 `@page` mentions per note
+
+If any answer is wrong, paste the Vault Instructions contents directly into the chat before proceeding.
+
+---
+
+## Step 4: Write the first real page
+
+Same flow as Path A Step 5. Pick something small the participant actually wants to remember. The agent should:
+
+1. Pick the correct destination (a `Learning` database entry, a new `Meetings` row, a plain page under `Notes`, etc.)
+2. Fill in properties with today's date and the right `type`, `status`, `tags`
+3. Add 2-3 `@page` mentions to related pages (create empty stubs if the targets do not exist yet)
+4. Confirm with the participant before writing
+
+---
+
+## Step 5: Hand off to challenges
+
+Go to `docs/06-challenges.md`.
+
+Challenge 1 (YouTube capture) works via the Notion MCP: the agent creates a page in the `Learning` database with the transcript summary. For the transcription itself, either paste the video URL into Claude.ai / ChatGPT (if the model can watch YouTube directly) or run `yt-dlp` locally and paste the transcript.
+
+Challenge 2 (build skills) needs adaptation: Notion has no equivalent of Claude Code skills. Create two **Custom Instructions** in Claude.ai or **Saved Prompts** in ChatGPT that encode the same behavior. See `docs/06-challenges.md` Path-specific notes.
+
+---
+
+## Troubleshooting
+
+| Problem | Fix |
+|---------|-----|
+| "No Notion pages found" (local MCP) | Integration not shared with the parent page. Open the page in Notion -> Connections -> add the integration. |
+| OAuth loop in Claude Code | Stale session. `claude mcp remove notion` and re-add. |
+| Remote connector option missing in Claude Desktop | Free plan. Upgrade, or use Claude Code instead. |
+| `unauthorized` / 401 (local MCP) | Token is wrong, missing `ntn_` prefix, or was regenerated. Paste the current one from <https://www.notion.so/profile/integrations>. |
+| Agent creates pages in the wrong place | The conventions doc was not loaded. Paste "Vault Instructions" directly into the chat and retry. |
+| Agent fails to set database properties | Property names are case-sensitive. Ask the agent to inspect the database schema first, then retry. |
+
+---
+
+## Known limitations of Path B
+
+- No Claude Code skills (pptx, docx, youtube-transcribe). Use ChatGPT / Claude.ai features or run CLI tools manually and paste.
+- Backlinks are implicit (via `@page` mentions) rather than a two-way wiki-link graph. Notion's "Backlinks" panel on each page shows the inverse.
+- Local-first users lose the "works offline, lives in my git repo" property of a plain markdown vault.
+- Team workspaces are shared by default. Consider a personal workspace for the `Personal/` page.

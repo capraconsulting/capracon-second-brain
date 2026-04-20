@@ -2,7 +2,7 @@
 
 > Single source of truth for what still needs to be built. Update this as you go.
 
-**Last updated:** 18.04.2026
+**Last updated:** 18.04.2026 (Paths B and C filled in)
 
 ## Legend
 
@@ -23,29 +23,34 @@
 - [x] `CLAUDE.md` (S)
 - [x] `CONTEXT.md` (S)
 - [x] `ROADMAP.md` (S) -- you are here
-- [ ] `START_HERE.md` (M) **@magnus** -- the stack-quiz entry point
-- [ ] `docs/01-pick-your-stack.md` (S) **@magnus** -- expanded quiz logic
-- [ ] `docs/02-bootstrap-obsidian.md` (M) **@magnus** -- Path A, default
-- [ ] `docs/03-bootstrap-notion.md` (M) **@vemund-or-rune** -- Path B
-- [ ] `docs/04-bootstrap-sharepoint.md` (M) **@vemund-or-rune** -- Path C
-- [ ] `docs/05-bootstrap-plain.md` (S) **@magnus** -- Path D
-- [ ] `docs/06-challenges.md` (M) **@magnus** -- Challenge 1 + 2 (+ optional bonus)
-- [ ] `docs/07-going-further.md` (S) **@magnus** -- inspo, links, next steps
+- [x] `START_HERE.md` (M) **@magnus** -- the stack-quiz entry point
+- [x] `docs/01-pick-your-stack.md` (S) **@magnus** -- expanded quiz logic
+- [x] `docs/02-bootstrap-obsidian.md` (M) **@magnus** -- Path A, default
+- [x] `docs/03-bootstrap-notion.md` (M) **@magnus** -- Path B (filled in, hosted Notion MCP as default, local fallback documented)
+- [x] `docs/04-bootstrap-sharepoint.md` (M) **@magnus** -- Path C (filled in, declarative agent as default, Work IQ SharePoint MCP as power-user path)
+- [x] `docs/04b-bootstrap-confluence.md` (M) **@magnus** -- Path E (added 18.04.2026, Rovo MCP default + sooperset fallback + raw REST escape hatch)
+- [x] `docs/05-bootstrap-plain.md` (S) **@magnus** -- Path D
+- [x] `docs/06-challenges.md` (M) **@magnus** -- Challenge 1 (YouTube capture) + Challenge 2 (copy-to-clipboard + devils-advocate skills)
+- [x] `docs/07-going-further.md` (S) **@magnus** -- inspo, links, next steps
 
 ### Starter vault
 
-- [ ] `starter-vault/CLAUDE.md` (M) **@magnus** -- simplified fork of personal vault CLAUDE.md
-- [ ] `starter-vault/AGENTS.md` (S) -- duplicate or symlink of above
-- [ ] `starter-vault/Templates/Note.md` (S)
-- [ ] `starter-vault/Templates/Learning.md` (S)
-- [ ] `starter-vault/Templates/Person.md` (S)
-- [ ] `.gitkeep` placeholders in empty dirs so git tracks them
+- [x] `starter-vault/CLAUDE.md` (M) **@magnus** -- simplified fork of personal vault CLAUDE.md
+- [x] `starter-vault/AGENTS.md` (S) -- points at CLAUDE.md
+- [x] `starter-vault/Templates/Note.md` (S)
+- [x] `starter-vault/Templates/Learning.md` (S)
+- [x] `starter-vault/Templates/Person.md` (S)
+- [x] `starter-vault/Templates/Meeting.md` (S) -- added as bonus, useful for workshop demo
+- [x] `.gitkeep` placeholders in empty dirs so git tracks them
 
 ### Skills
 
-- [ ] Copy `~/dev/personal/vault/.claude/skills/youtube-transcribe/` into `.claude/skills/` (S) **@magnus**
-- [ ] Copy `~/.claude/skills/skill-creator/` into `.claude/skills/` (S) **@magnus**
-- [ ] Verify both work in the repo after clone (M) **@magnus**
+- [x] Copy `~/dev/personal/vault/.claude/skills/youtube-transcribe/` into `.claude/skills/` (S) **@magnus**
+- [x] Copy `~/.claude/skills/skill-creator/` into `.claude/skills/` (S) **@magnus**
+- [x] Copy `~/.claude/skills/obsidian-vault/` into `.claude/skills/` (S) **@magnus** -- core conventions skill
+- [x] Add `brainstorming` (obra/superpowers) + `pptx`, `xlsx`, `docx` (anthropics/skills) from skills.sh ecosystem (S) **@magnus**
+- [ ] Verify all skills work in the repo after fresh clone (M) **@magnus** -- dry-run on a second machine
+- [ ] Extract the `copy-to-clipboard` + `devils-advocate` solutions so crew can help stragglers (M) **@magnus**
 
 ### Testing
 
@@ -54,8 +59,9 @@
 
 ### Logistics
 
-- [ ] Decide repo location: Capra-org on GitHub vs Magnus personal (S) **@crew-meeting**
-- [ ] `git init`, initial commit, push (S) **@magnus** -- after crew approval
+- [x] Decide repo location: Capra-org on GitHub vs Magnus personal (S) **@crew-meeting** -- landed on capraconsulting/capracon-second-brain (private)
+- [x] `git init`, initial commit, push (S) **@magnus**
+- [ ] Flip repo to public before workshop day (S) **@magnus**
 - [ ] QR-code / short URL pointing to the repo (S)
 - [ ] Slide in talk that points at repo (S) **@magnus**
 - [ ] Backup: pre-recorded walkthrough if wifi dies (M) **@magnus**
@@ -64,9 +70,11 @@
 
 ## P1 -- nice-to-have before the workshop
 
-- [ ] Bonus challenge: "lag et dashboard-notat med Dataview/tilsvarende" (M)
 - [ ] Screenshots in bootstrap docs (M)
-- [ ] Troubleshooting section in each bootstrap doc (common errors + fixes) (M)
+- [ ] Expand troubleshooting sections in each bootstrap doc once dry-runs surface real issues (M)
+- [x] Path B and C bootstraps: fill in the TODOs (M) **@magnus** -- done 18.04.2026
+
+*(Dropped: Dataview dashboard bonus challenge - 105 min is already tight.)*
 
 ---
 
@@ -81,13 +89,16 @@
 
 ## Open questions (for crew meeting)
 
-- [ ] Repo under Capra org or Magnus personal?
-- [ ] One bonus challenge for fast finishers, yes/no?
-- [ ] Demo skills in intro, or let participants discover them via agent?
-- [ ] Vemund's EA-free track (Bedrock/Azure): separate talk or separate workshop?
+- [x] Repo under Capra org or Magnus personal? -> capraconsulting org (private for now, flip to public before workshop)
+- [x] One bonus challenge for fast finishers, yes/no? -> no, dropped
+- [ ] Demo skills in intro, or let participants discover them via agent? -> open
+- [ ] Vemund's EA-free track (Bedrock/Azure): separate talk or separate workshop? -> open, out of scope for this one
 
 ---
 
 ## Changelog
 
-- **18.04.2026** -- Repo scaffolded. Initial handoff docs written. No code/content yet beyond this scaffolding.
+- **18.04.2026** -- Repo scaffolded. Initial handoff docs written.
+- **18.04.2026 (evening)** -- START_HERE, stack quiz, Paths A and D bootstraps, challenges, going-further all drafted. Paths B and C left as skeleton stubs for Vemund/Rune. starter-vault/ populated with CLAUDE.md, AGENTS.md, 4 templates, folder skeleton. 7 skills copied in: obsidian-vault, youtube-transcribe, skill-creator, brainstorming, pptx, xlsx, docx. Challenge 2 pivoted from "write any skill" to "build copy-to-clipboard + devils-advocate" (more tractable for beginner-intermediate). Repo pushed to capraconsulting/capracon-second-brain (private).
+- **18.04.2026 (late)** -- Paths B (Notion) and C (SharePoint) filled in. Path B defaults to the hosted Notion MCP (`https://mcp.notion.com/mcp`, OAuth, no tokens) with a local-server fallback for free-tier Claude Desktop. Path C leads with a declarative M365 Copilot agent scoped to a SharePoint site; falls back to plain Copilot Chat if extensibility is blocked; Work IQ SharePoint MCP documented as a power-user option (admin consent required, 5 MB file cap). Flagged naming churn: Azure AD -> Entra ID, Teams Toolkit -> M365 Agents Toolkit, msgraph-cli archived.
+- **18.04.2026 (even later)** -- Path E (Confluence) added. `docs/04b-bootstrap-confluence.md` leads with Atlassian Rovo MCP (`https://mcp.atlassian.com/v1/mcp`, GA, free, OAuth) via `mcp-remote` proxy. Fallback: `sooperset/mcp-atlassian` (community, actively maintained) with API token for tenants that block Marketplace installs and for Atlassian Data Center. Ultimate fallback: raw REST + API token. Cross-docs updated: START_HERE, 01-pick-your-stack, 06-challenges (path-specific notes), AGENTS.md (5 paths), CONTEXT.md (Decision 2 expanded).

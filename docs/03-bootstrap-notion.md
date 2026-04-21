@@ -12,10 +12,17 @@ By the end of this doc, the participant has:
 2. Notion MCP connected to their agent (hosted, OAuth-based, no tokens)
 3. The agent has read the conventions from `starter-vault/CLAUDE.md` (adapted for Notion)
 4. One real page saved in `Learning` or `Notes` with the right properties and at least 2 `@page` mentions
+5. `SETUP.md` in the workshop repo filled in with the Notion parent page URL and committed
 
 ---
 
 ## Step 1: Notion workspace setup
+
+**Before doing anything else, get the parent page URL from the participant.** Ask:
+
+> *"Paste the Notion share link to the page you want to use as the root of your Second Brain. If you do not have one yet, create a top-level page in Notion called 'Second Brain' (or whatever you want) and share the link."*
+
+You will need this URL both for creating the sub-structure via MCP and for filling in `SETUP.md` at the end.
 
 Ask the participant to open Notion and create a top-level page called **"Second Brain"** (or whatever they want). Inside it, create:
 
@@ -131,7 +138,24 @@ Same flow as Path A Step 5. Pick something small the participant actually wants 
 
 ---
 
-## Step 5: Hand off to challenges
+## Step 5: Record where the vault lives
+
+Open `SETUP.md` in this workshop repo and fill in the **Path B** section: parent page URL, parent page ID (the 32-character hex string in the URL), workspace, MCP transport, and the databases you created. Set `Path: B` at the top and today's date. Delete the other path sections.
+
+Commit it:
+
+```bash
+git add SETUP.md
+git commit -m "chore: record Path B Notion coordinates"
+```
+
+Push if the participant has their own remote.
+
+> **Why this step matters.** Without `SETUP.md`, the next agent session you start has no idea which Notion page is your root and will run you through the stack quiz again.
+
+---
+
+## Step 6: Hand off to challenges
 
 Go to `docs/06-challenges.md`.
 

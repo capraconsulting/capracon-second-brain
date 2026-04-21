@@ -42,6 +42,7 @@ A user picks one via the quiz in `START_HERE.md`. Each path needs its own `docs/
 ├── CLAUDE.md                         # Points at AGENTS.md (for Claude Code convention)
 ├── CONTEXT.md                        # Full background: talk + Slack thread + decisions
 ├── ROADMAP.md                        # TODOs with ownership
+├── SETUP.md                          # Participant fills this in at bootstrap: vault path / Notion page URL / etc. Source of truth for "where does my vault live".
 ├── START_HERE.md                     # What the participant's agent reads
 ├── docs/
 │   ├── 01-pick-your-stack.md         # Stack quiz script
@@ -105,6 +106,7 @@ See `ROADMAP.md` for what is still open. Main TODOs: dry-run on a non-crew colle
 3. **Tool-agnostic.** If a doc only works for Claude, split it or generalize.
 4. **Small PRs, commit often.** (Once git is initialized.)
 5. **Frontmatter in all starter-vault `.md` files** (following Magnus' vault conventions -- see `starter-vault/CLAUDE.md` once written).
+6. **Read `SETUP.md` before asking the participant where anything lives.** If it has real values, use them. If it still has `<TODO>` placeholders, the participant has not completed bootstrap yet -- route them through `START_HERE.md`.
 
 ## Source of truth
 

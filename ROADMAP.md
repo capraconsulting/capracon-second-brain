@@ -2,7 +2,7 @@
 
 > Single source of truth for what still needs to be built. Update this as you go.
 
-**Last updated:** 18.04.2026 (Paths B and C filled in)
+**Last updated:** 21.04.2026 (SETUP.md template added for vault coordinates)
 
 ## Legend
 
@@ -101,4 +101,5 @@
 - **18.04.2026** -- Repo scaffolded. Initial handoff docs written.
 - **18.04.2026 (evening)** -- START_HERE, stack quiz, Paths A and D bootstraps, challenges, going-further all drafted. Paths B and C left as skeleton stubs for Vemund/Rune. starter-vault/ populated with CLAUDE.md, AGENTS.md, 4 templates, folder skeleton. 7 skills copied in: obsidian-vault, youtube-transcribe, skill-creator, brainstorming, pptx, xlsx, docx. Challenge 2 pivoted from "write any skill" to "build copy-to-clipboard + devils-advocate" (more tractable for beginner-intermediate). Repo pushed to capraconsulting/capracon-second-brain (private).
 - **18.04.2026 (late)** -- Paths B (Notion) and C (SharePoint) filled in. Path B defaults to the hosted Notion MCP (`https://mcp.notion.com/mcp`, OAuth, no tokens) with a local-server fallback for free-tier Claude Desktop. Path C leads with a declarative M365 Copilot agent scoped to a SharePoint site; falls back to plain Copilot Chat if extensibility is blocked; Work IQ SharePoint MCP documented as a power-user option (admin consent required, 5 MB file cap). Flagged naming churn: Azure AD -> Entra ID, Teams Toolkit -> M365 Agents Toolkit, msgraph-cli archived.
+- **21.04.2026** -- `SETUP.md` template added at repo root. Captures per-participant vault coordinates (path / URL / space / site) in a single committed file so the *next* agent session knows where the vault lives without re-running the stack quiz. Every bootstrap doc (Paths A-E) gained a "record where the vault lives" step. `START_HERE.md` grew a short-circuit for already-bootstrapped repos. `AGENTS.md` now lists `SETUP.md` in the repo structure and adds convention 6 ("read `SETUP.md` before asking the participant where anything lives"). Surfaced during a dogfood run when the participant (Magnus) noted: *"i'd expect it to ask me maybe for the link to the folder I want to have for my root in the vault or something? can we add that somewhere and push it to the git repo so we have it for later? the same would go for any tool."*
 - **18.04.2026 (even later)** -- Path E (Confluence) added. `docs/04b-bootstrap-confluence.md` leads with Atlassian Rovo MCP (`https://mcp.atlassian.com/v1/mcp`, GA, free, OAuth) via `mcp-remote` proxy. Fallback: `sooperset/mcp-atlassian` (community, actively maintained) with API token for tenants that block Marketplace installs and for Atlassian Data Center. Ultimate fallback: raw REST + API token. Cross-docs updated: START_HERE, 01-pick-your-stack, 06-challenges (path-specific notes), AGENTS.md (5 paths), CONTEXT.md (Decision 2 expanded).

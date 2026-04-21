@@ -29,6 +29,7 @@ By the end of this doc, the participant has:
 2. Either a declarative Copilot agent or an MCP-connected agent that knows the conventions
 3. The conventions doc from `starter-vault/CLAUDE.md` (SharePoint-adapted) saved in the site
 4. One real document saved in `Learning` or `Notes` with the right metadata columns and at least 2 internal links
+5. `SETUP.md` in the workshop repo filled in with the site URL and committed
 
 ---
 
@@ -142,7 +143,22 @@ If using the declarative agent (Step 2a) or plain Copilot (Step 2b), the agent d
 
 ---
 
-## Step 5: Hand off to challenges
+## Step 5: Record where the vault lives
+
+Open `SETUP.md` in this workshop repo and fill in the **Path C** section: site URL, document library, declarative agent name (if any), and whether extensibility is blocked. Set `Path: C` at the top and today's date. Delete the other path sections.
+
+```bash
+git add SETUP.md
+git commit -m "chore: record Path C SharePoint coordinates"
+```
+
+Push if the participant has their own remote.
+
+> **Why this step matters.** Enterprise setups churn. Tenant URLs change, agents get renamed, libraries get reorganized. `SETUP.md` is the one place the next agent session can look to get current.
+
+---
+
+## Step 6: Hand off to challenges
 
 Go to `docs/06-challenges.md`.
 

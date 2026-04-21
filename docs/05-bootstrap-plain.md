@@ -12,6 +12,7 @@ By the end of this doc, the participant has:
 2. Their agent of choice (Cursor, Windsurf, Cline, Codex, Copilot, or Claude Code) configured to read the conventions
 3. The agent has internalized `CLAUDE.md` / `AGENTS.md` / whichever convention file their agent reads
 4. One real note saved in `Learning/` or `Notes/` with correct frontmatter and at least 2 wiki links
+5. `SETUP.md` in the workshop repo filled in with the vault path and committed
 
 ---
 
@@ -123,7 +124,22 @@ The note should have:
 
 ---
 
-## Step 7: Hand off to challenges
+## Step 7: Record where the vault lives
+
+Open `SETUP.md` in this workshop repo and fill in the **Path D** section (vault path, git remote, which agent config files you created, primary agent). Set `Path: D` at the top and today's date. Delete the other path sections.
+
+```bash
+git add SETUP.md
+git commit -m "chore: record Path D plain-markdown vault coordinates"
+```
+
+Push if the participant has their own remote.
+
+> **Why this step matters.** Path D is deliberately multi-agent. `SETUP.md` lets whichever agent you open next know which folder is the vault and which convention file to read.
+
+---
+
+## Step 8: Hand off to challenges
 
 Go to `docs/06-challenges.md`.
 

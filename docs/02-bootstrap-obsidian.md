@@ -12,6 +12,7 @@ By the end of this doc, the participant has:
 2. The `starter-vault/` contents copied into that folder
 3. Claude Code running in the vault directory, having read `starter-vault/CLAUDE.md`
 4. One real note saved in `Learning/` or `Notes/` with correct frontmatter and at least 2 wiki links
+5. `SETUP.md` in the workshop repo filled in with the vault path and committed
 
 ---
 
@@ -130,7 +131,24 @@ Open **Graph View** (`Cmd+G`) to see the note as a dot in the graph. Right now i
 
 ---
 
-## Step 7: Hand off to challenges
+## Step 7: Record where the vault lives
+
+Open `SETUP.md` in this workshop repo and fill in the **Path A** section (vault path, git remote, branch, which skills got copied). Set `Path: A` at the top and today's date. Delete the other path sections.
+
+Commit it:
+
+```bash
+git add SETUP.md
+git commit -m "chore: record Path A vault coordinates"
+```
+
+Push if the participant has their own remote.
+
+> **Why this step matters.** Without `SETUP.md`, the next agent session you start has no idea where your vault is and will run you through the stack quiz again.
+
+---
+
+## Step 8: Hand off to challenges
 
 Go to `docs/06-challenges.md`.
 

@@ -12,6 +12,7 @@ By the end of this doc, the participant has:
 2. Atlassian Rovo MCP (hosted) connected to their agent, or a community MCP fallback if the tenant blocks it
 3. The agent has read the conventions from `starter-vault/CLAUDE.md` (adapted for Confluence)
 4. One real page saved under `Learning` or `Notes` with labels, properties, and at least 2 inline page links
+5. `SETUP.md` in the workshop repo filled in with the space key and committed
 
 ---
 
@@ -179,7 +180,22 @@ Same flow as Path A Step 5. Pick something small. The agent should:
 
 ---
 
-## Step 5: Hand off to challenges
+## Step 5: Record where the vault lives
+
+Open `SETUP.md` in this workshop repo and fill in the **Path E** section: base URL, space key, MCP flavor (Rovo hosted / sooperset local / raw REST), and the parent page ID if you are rooting under a specific page. Set `Path: E` at the top and today's date. Delete the other path sections.
+
+```bash
+git add SETUP.md
+git commit -m "chore: record Path E Confluence coordinates"
+```
+
+Push if the participant has their own remote.
+
+> **Why this step matters.** Confluence spaces often live in a tenant the participant doesn't own (client engagement). `SETUP.md` is how the next agent session knows which tenant / space / MCP flavor to target -- none of that is inferable from file system or git state.
+
+---
+
+## Step 6: Hand off to challenges
 
 Go to `docs/06-challenges.md`.
 

@@ -51,12 +51,37 @@ On each library, add metadata columns (Library Settings -> **Create column**):
 
 | Column | Type | Purpose |
 |--------|------|---------|
-| Type | Choice | `meeting`, `learning`, `note`, `project`, `person` |
-| Tags | Choice (multi) or Managed Metadata | Free-form tagging |
-| Status | Choice | `draft`, `active`, `archived` |
-| Related | Lookup (to this library) | Cross-links between notes (the closest thing to `[[wiki links]]`) |
+| Type | Choice | See **Type values** below |
+| Tags | Choice (multi) or Managed Metadata | See **Tag values** below |
+| Status | Choice | See **Status values** below |
+| Related | Lookup (to this library) | Cross-links between documents (the closest thing to `[[wiki links]]`) |
 
 `Created` and `Modified` are auto-populated by SharePoint; do not try to set them.
+
+### Source of truth for taxonomy
+
+All `Type`, `Status`, and `Tag` values come from `starter-vault/CLAUDE.md`. **This applies to every path.** Each path just encodes the same taxonomy in its native primitives (YAML frontmatter / Notion select / SharePoint Choice / Confluence label). Do not invent values; if something is missing from `starter-vault/CLAUDE.md`, fix it there first and propagate.
+
+**Type values** (full set -- add the subset each library needs):
+
+`note`, `project`, `meeting`, `daily`, `resource`, `person`, `decision`, `learning`, `how-to-guide`, `brag`
+
+**Status values** (full set; depends on the type):
+
+`draft`, `active`, `planning`, `on-hold`, `completed`, `archived`
+
+- `learning`: `draft | active | completed`
+- `project`: `planning | active | on-hold | completed | archived`
+- `decision`: `active`
+- other types: no status field
+
+**Tag values** (pre-populate these; add more as the vault grows):
+
+- Source: `source/book`, `source/article`, `source/video`, `source/podcast`, `source/course`
+- Status tags: `status/todo`, `status/in-progress`, `status/done`, `status/waiting`
+- Area: `area/work`, `area/health`, `area/finance`
+
+SharePoint Choice columns are flat, so keep the slash syntax literally as the option value -- that way the `#tag/sub` convention from the starter vault still reads clearly.
 
 > **Column-naming gotcha.** SharePoint keeps the *display name* but Graph / MCP use the *internal name* (no spaces, set at creation). "Full Name" becomes `FullName` or similar. Check with `listColumns` before asking the agent to set fields.
 

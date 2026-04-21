@@ -43,19 +43,44 @@ In Confluence, create a space called **"Second Brain"** (type: Personal or Team,
 - `Reference`
 - `Notes`
 
-Add space **Labels** that stand in for tags: `meeting`, `learning`, `note`, `project`, `draft`, `active`, `archived`.
-
 For structured metadata use **Content Properties** (JSON blobs attached to a page, set via `PUT /wiki/rest/api/content/{id}/property/{key}`) or the **Page Properties macro** (human-readable, reportable via Page Properties Report macro). Either is fine. Recommendation: content properties for agent-written metadata, Page Properties macro for anything humans will query visually.
 
-Map frontmatter to Confluence:
+### Source of truth for taxonomy
+
+All type, status, and tag values come from `starter-vault/CLAUDE.md`. **This applies to every path.** Each path just encodes the same taxonomy in its native primitives (YAML frontmatter / Notion select / SharePoint Choice / Confluence label). Do not invent values; if something is missing from `starter-vault/CLAUDE.md`, fix it there first and propagate.
+
+Confluence labels are flat per-space, so encode slashes literally (`source/book`, not a nested taxonomy).
+
+### Labels to add to the space
+
+**Type labels** (one per page, based on what the page is):
+
+`note`, `project`, `meeting`, `daily`, `resource`, `person`, `decision`, `learning`, `how-to-guide`, `brag`
+
+**Status labels** (one per page where applicable):
+
+- `learning`: `draft`, `active`, `completed`
+- `project`: `planning`, `active`, `on-hold`, `completed`, `archived`
+- `decision`: `active`
+- other types: no status
+
+Full union: `draft`, `active`, `planning`, `on-hold`, `completed`, `archived`.
+
+**Tag labels** (multiple per page; pre-populate these, add more as needed):
+
+- Source: `source/book`, `source/article`, `source/video`, `source/podcast`, `source/course`
+- Status tags: `status/todo`, `status/in-progress`, `status/done`, `status/waiting`
+- Area: `area/work`, `area/health`, `area/finance`
+
+### Map frontmatter to Confluence
 
 | Frontmatter (Obsidian) | Confluence |
 |-----------------------|------------|
-| `type` | Label (`meeting`, `learning`, ...) |
+| `type` | Label (one of the type labels above) |
 | `created` | Auto (page creation timestamp) |
 | `tags` | Labels (multi) |
 | `related` | Inline page links in the body, or a Page Properties row |
-| `status` | Label (`draft`, `active`, `archived`) |
+| `status` | Label (one of the status labels above, where applicable) |
 | `source`, `author` | Page properties or a table at the top of the page |
 
 ---

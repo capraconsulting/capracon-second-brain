@@ -26,14 +26,46 @@ You will need this URL both for creating the sub-structure via MCP and for filli
 
 Ask the participant to open Notion and create a top-level page called **"Second Brain"** (or whatever they want). Inside it, create:
 
-- `Personal/` (plain page, child pages for anything private)
-- `Projects/` (plain page, one child per active project)
-- `Meetings/` (**database** with properties: `type` select, `attendees` multi-select, `date` date)
-- `Learning/` (**database** with properties: `type` select, `source` URL, `author` text, `status` select, `tags` multi-select)
-- `Reference/` (plain page, child pages for docs / cheatsheets / links)
-- `Notes/` (plain page, child pages for loose notes)
+- `Personal` (plain page, child pages for anything private)
+- `Projects` (plain page, one child per active project)
+- `Meetings` (**database**, schema below)
+- `Learning` (**database**, schema below)
+- `Reference` (plain page, child pages for docs / cheatsheets / links)
+- `Notes` (plain page, child pages for loose notes)
 
-Recommendation: use Notion databases for `Learning` and `Meetings` (where structured queries matter). Plain pages are fine everywhere else. Databases map 1:1 to frontmatter fields in the starter-vault `.md` files:
+Recommendation: use Notion databases for `Learning` and `Meetings` (where structured queries matter). Plain pages are fine everywhere else.
+
+### Source of truth for taxonomy
+
+All `type`, `status`, and `tag` values come from `starter-vault/CLAUDE.md`. **This applies to every path.** Each path just encodes the same taxonomy in its native primitives (YAML frontmatter / Notion select / SharePoint Choice / Confluence label). Do not invent values; if something is missing from `starter-vault/CLAUDE.md`, fix it there first and propagate.
+
+### Meetings database schema
+
+Each row is one meeting. Meetings do not carry a `status` field per `starter-vault/CLAUDE.md`.
+
+| Property | Type | Options |
+|----------|------|---------|
+| `Meeting` | Title | (title column) |
+| `type` | Select | `meeting` |
+| `date` | Date | -- |
+| `attendees` | Multi-select | (empty; add people as they appear) |
+
+### Learning database schema
+
+Each row is one book / article / video / course / podcast takeaway.
+
+| Property | Type | Options |
+|----------|------|---------|
+| `Title` | Title | (title column) |
+| `type` | Select | `learning` |
+| `source` | URL | -- |
+| `author` | Text | -- |
+| `status` | Select | `draft`, `active`, `completed` (matches the `learning` type in `starter-vault/CLAUDE.md`) |
+| `tags` | Multi-select | pre-populate: `source/book`, `source/article`, `source/video`, `source/podcast`, `source/course`. Notion flattens hierarchical tags; keep the slash syntax so the `#source/*` convention from the starter vault still reads clearly. |
+
+> **Why single-option selects?** `type = meeting` / `type = learning` look redundant (every row has the same value). Keep them anyway: they map 1:1 to the `type` frontmatter field, which makes cross-vault search and future migrations (e.g. Notion -> plain markdown) trivial.
+
+### Frontmatter <-> Notion mapping
 
 | Frontmatter (Obsidian) | Notion property |
 |-----------------------|-----------------|

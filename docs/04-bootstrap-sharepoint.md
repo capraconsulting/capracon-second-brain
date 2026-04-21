@@ -140,11 +140,7 @@ Then install the server into VS Code via the Copilot Chat "Install MCP" flow. Au
 
 ## Step 3: Teach Copilot the conventions
 
-Save a copy of `starter-vault/CLAUDE.md` as a **SharePoint page** or a `.docx` in the site root, titled **"Conventions"**. SharePoint-specific tweaks:
-
-- Replace folder paths (`Learning/`) with library names (`Learning` library in the Second Brain site)
-- Replace `[[wiki links]]` with **sharing URLs** (`[Note title](https://tenant.sharepoint.com/sites/secondbrain/...)`) or **Related** lookup column entries
-- Replace YAML frontmatter with SharePoint metadata columns (see the table in Step 1)
+Copy the contents of `starter-vault/conventions-sharepoint.md` into a **SharePoint page** or a `.docx` in the site root, titled **"Conventions"**. This file is the SharePoint-adapted sibling of `starter-vault/CLAUDE.md` -- terminology (library), linking (sharing URL / Related lookup), and metadata (Choice columns) are already translated.
 
 Test: in Copilot Chat (or the declarative agent), ask:
 

@@ -167,17 +167,7 @@ For agents without MCP support or tenants where even `sooperset` is blocked:
 
 ## Step 3: Teach the agent the conventions
 
-Create a Confluence page called **"Vault Instructions"** in the "Second Brain" space root. Paste the contents of `starter-vault/CLAUDE.md` and adapt:
-
-- Replace "folder" with "page" or "space"
-- Replace `[[wiki links]]` with **inline page links** in Confluence storage format:
-
-  ```xml
-  <ac:link><ri:page ri:content-title="Target Page Title"/><ac:link-body>Display text</ac:link-body></ac:link>
-  ```
-
-  Omit `ac:link-body` to auto-use the page title. For agents that prefer ADF, use an `inlineCard` block with the page URL.
-- Replace YAML frontmatter with labels + content properties (see the mapping table in Step 1)
+Create a Confluence page called **"Vault Instructions"** in the "Second Brain" space root and paste the contents of `starter-vault/conventions-confluence.md` into it. This file is the Confluence-adapted sibling of `starter-vault/CLAUDE.md` -- terminology (page / space), linking (`ac:link` / `inlineCard`), and metadata (labels + content properties) are already translated.
 
 Then tell the agent:
 

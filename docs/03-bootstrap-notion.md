@@ -140,11 +140,7 @@ Only needed for free-tier Claude Desktop users, or if the participant explicitly
 
 ## Step 3: Teach the agent the conventions
 
-Save a copy of `starter-vault/CLAUDE.md` as a Notion page called **"Vault Instructions"** inside the "Second Brain" parent. Adjust terminology:
-
-- Replace "folder" with "page" or "database"
-- Replace `[[wiki links]]` with Notion `@page` mentions or inline page links
-- Replace YAML frontmatter with database properties (see the mapping table in Step 1)
+Copy the contents of `starter-vault/conventions-notion.md` into a Notion page called **"Vault Instructions"** inside the "Second Brain" parent. This file is the Notion-adapted sibling of `starter-vault/CLAUDE.md` -- terminology (page / database), linking (`@page` mentions), and properties are already translated.
 
 Then tell the agent:
 

@@ -5,11 +5,13 @@ description: Save notes, learnings, decisions, meeting notes, people profiles, p
 
 # Obsidian Vault Skill
 
-Save and retrieve knowledge from the user's Obsidian vault at `~/dev/personal/vault`.
+Save and retrieve knowledge from the user's Obsidian vault.
 
 ## Vault Path
 
-**All operations target `~/dev/personal/vault/`**. Always use absolute paths when writing or reading files.
+**All operations target the current project directory** (`$CLAUDE_PROJECT_DIR`). This skill is copied into each participant's vault under `.claude/skills/` during Path A bootstrap, so the vault *is* the working directory when this skill runs. If you need the absolute path (e.g. to build paths for tool calls that don't inherit CWD), read it from `SETUP.md` in the workshop repo, under the **Path A -- Obsidian vault** section -> **Vault path (absolute)**.
+
+If `SETUP.md` is not filled in yet, the participant has not completed bootstrap. Route them to `START_HERE.md` rather than guessing a path.
 
 ## Quick Reference: Where to Put Things
 
@@ -30,7 +32,7 @@ Save and retrieve knowledge from the user's Obsidian vault at `~/dev/personal/va
 
 **SEARCH FIRST** — the vault's value is in connections, not isolated notes.
 
-1. `grep` the vault for keywords from the topic (search `~/dev/personal/vault` with `--glob '*.md'`)
+1. `grep` the vault for keywords from the topic (search the current directory with `--glob '*.md'`)
 2. `find` files by name pattern to check if a note already exists
 3. Search synonyms and related terms
 4. If a note exists, **update it** instead of creating a duplicate
@@ -297,7 +299,7 @@ related: []
 
 - NEVER create notes without frontmatter
 - NEVER use markdown-style `[text](link)` for internal links
-- NEVER manually edit anything in `~/dev/personal/vault/.obsidian/`
+- NEVER manually edit anything in the vault's `.obsidian/` directory (that is Obsidian's own state)
 - ALWAYS search before creating
 - ALWAYS add wiki links and related notes
-- ALWAYS use absolute paths (the vault is at `~/dev/personal/vault/`)
+- ALWAYS use absolute paths when writing outside the CWD (resolve the vault root from `$CLAUDE_PROJECT_DIR` or `SETUP.md`)

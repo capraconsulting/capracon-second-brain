@@ -55,6 +55,18 @@ When Obsidian prompts, pick **"Open folder as vault"** and select `$VAULT`.
 
 Enable **Settings -> Files and links -> Detect all file extensions** so markdown files are visible.
 
+### What you just got for free
+
+The starter-vault ships with a `.claude/` directory already wired up. After the copy you have:
+
+- **Hooks** (`.claude/hooks/`) -- two bash scripts that run automatically:
+  - `validate-frontmatter.sh` -- warns if Claude writes or edits an `.md` that is missing YAML frontmatter. Fires as a `PostToolUse` hook on every `Write` / `Edit`.
+  - `session-context.sh` -- injects note counts per folder + recently modified files + uncommitted-change status at the top of every Claude Code session.
+- **Slash commands** (`.claude/commands/`) -- `/daily`, `/note`, `/meeting`, `/inbox`, `/link`. These are first-party tools for the most common vault workflows. Participants can add more later (Challenge 2).
+- **Settings** (`.claude/settings.json`) -- wires the hooks up. Edit this to add your own hooks later.
+
+These are ported from Magnus' working personal vault. They are the reason the conventions in `CLAUDE.md` actually *stick* instead of drifting: the hook warns on every write, the session-context shows what state the vault is in, the slash commands encode the right frontmatter on creation.
+
 ---
 
 ## Step 3: Point Claude Code at the vault
@@ -64,6 +76,8 @@ cd $VAULT
 claude
 ```
 
+The `SessionStart` hook should fire and print a "Vault Context" block with note counts and recent activity.
+
 First thing to tell Claude:
 
 > *"Read CLAUDE.md and confirm you understand the vault conventions. Then list the folder structure."*
@@ -72,6 +86,7 @@ Verify Claude:
 - Lists the correct folders
 - Knows the frontmatter schema
 - Knows to always use `[[wiki links]]`
+- Acknowledges the `/daily`, `/note`, `/meeting`, `/inbox`, `/link` slash commands are available
 
 If Claude gets any of those wrong, re-read `CLAUDE.md` with it before proceeding.
 

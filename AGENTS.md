@@ -66,17 +66,29 @@ A user picks one via the quiz in `START_HERE.md`. Each path needs its own `docs/
 │   │   ├── Note.md
 │   │   ├── Learning.md
 │   │   └── Person.md
-│   └── Attachments/
-└── .claude/
-    └── skills/
-        ├── obsidian-vault/           # Core vault conventions (also drives starter-vault/CLAUDE.md)
-        ├── youtube-transcribe/       # Challenge 1
-        ├── skill-creator/            # Challenge 2 guide
-        ├── brainstorming/            # Challenge 2 scoping helper (obra/superpowers)
-        ├── pptx/                     # Bonus: vault -> slides
-        ├── xlsx/                     # Bonus: vault -> spreadsheet
-        └── docx/                     # Bonus: vault -> Word doc
+│   ├── Attachments/
+│   └── .claude/
+│       ├── settings.json             # Wires up the PostToolUse + SessionStart hooks
+│       ├── hooks/
+│       │   ├── validate-frontmatter.sh   # Warns on writes missing YAML frontmatter
+│       │   └── session-context.sh        # Prints vault state at session start
+│       ├── commands/
+│       │   ├── daily.md              # /daily
+│       │   ├── note.md               # /note
+│       │   ├── meeting.md            # /meeting
+│       │   ├── inbox.md              # /inbox
+│       │   └── link.md               # /link
+│       └── skills/
+│           ├── obsidian-vault/       # Core vault conventions (also drives starter-vault/CLAUDE.md)
+│           ├── youtube-transcribe/   # Challenge 1
+│           ├── skill-creator/        # Challenge 2 guide
+│           ├── brainstorming/        # Challenge 2 scoping helper (obra/superpowers)
+│           ├── pptx/                 # Bonus: vault -> slides
+│           ├── xlsx/                 # Bonus: vault -> spreadsheet
+│           └── docx/                 # Bonus: vault -> Word doc
 ```
+
+The `.claude/` directory lives **inside `starter-vault/`**, not at the repo root. The workshop is about teaching participants to set up their *vault*, and skills / hooks / commands are vault-level artifacts: they travel with the vault when the participant copies `starter-vault/` into their chosen location.
 
 ## Current state (as of 18.04.2026, paths B / C / E filled in)
 
@@ -95,7 +107,10 @@ A user picks one via the quiz in `START_HERE.md`. Each path needs its own `docs/
 - `starter-vault/CLAUDE.md` + `AGENTS.md` -- vault conventions (simplified from Magnus' personal vault)
 - `starter-vault/Templates/{Note,Learning,Person,Meeting}.md`
 - `starter-vault/` folder skeleton with `.gitkeep` stubs
-- `.claude/skills/` -- 7 skills bundled: `obsidian-vault`, `youtube-transcribe`, `skill-creator`, `brainstorming`, `pptx`, `xlsx`, `docx`
+- `starter-vault/.claude/skills/` -- 7 skills bundled: `obsidian-vault`, `youtube-transcribe`, `skill-creator`, `brainstorming`, `pptx`, `xlsx`, `docx`
+- `starter-vault/.claude/hooks/` -- `validate-frontmatter.sh` (PostToolUse), `session-context.sh` (SessionStart)
+- `starter-vault/.claude/commands/` -- `/daily`, `/note`, `/meeting`, `/inbox`, `/link`
+- `starter-vault/.claude/settings.json` -- hook wiring
 
 See `ROADMAP.md` for what is still open. Main TODOs: dry-run on a non-crew colleague, skills verification after fresh clone, QR code / URL slide, wifi-dies backup.
 

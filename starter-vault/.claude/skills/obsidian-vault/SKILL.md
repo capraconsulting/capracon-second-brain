@@ -9,7 +9,7 @@ Save and retrieve knowledge from the user's Obsidian vault.
 
 ## Vault Path
 
-**All operations target the current project directory** (`$CLAUDE_PROJECT_DIR`). This skill is copied into each participant's vault under `.claude/skills/` during Path A bootstrap, so the vault *is* the working directory when this skill runs. If you need the absolute path (e.g. to build paths for tool calls that don't inherit CWD), read it from `SETUP.md` in the workshop repo, under the **Path A -- Obsidian vault** section -> **Vault path (absolute)**.
+**All operations target the current project directory** (`$CLAUDE_PROJECT_DIR`). This skill ships inside `starter-vault/.claude/skills/` in the workshop repo and travels with the vault when the participant copies `starter-vault/` into their chosen location, so by the time this skill runs the vault *is* the working directory. If you need the absolute path (e.g. to build paths for tool calls that don't inherit CWD), read it from `SETUP.md` in the workshop repo, under the **Path A -- Obsidian vault** section -> **Vault path (absolute)**.
 
 If `SETUP.md` is not filled in yet, the participant has not completed bootstrap. Route them to `START_HERE.md` rather than guessing a path.
 

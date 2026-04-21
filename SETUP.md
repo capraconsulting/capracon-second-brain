@@ -23,7 +23,7 @@
 - **Vault path (absolute):** `<TODO: e.g. /Users/you/Documents/vault>`
 - **Git remote for the vault:** `<TODO: e.g. git@github.com:you/second-brain.git, or "none -- local only">`
 - **Branch:** `<TODO: e.g. main>`
-- **Skills copied to `$VAULT/.claude/skills/`:** `<TODO: list, or "all seven from the workshop repo">`
+- **Skills present in `$VAULT/.claude/skills/`:** `<TODO: list; default is the seven that ship with starter-vault (obsidian-vault, youtube-transcribe, skill-creator, brainstorming, pptx, xlsx, docx) plus anything you added in Challenge 2>`
 
 ## Path B -- Notion
 

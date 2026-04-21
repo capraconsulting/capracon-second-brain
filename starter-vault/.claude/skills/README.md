@@ -1,6 +1,6 @@
-# .claude/skills/
+# starter-vault/.claude/skills/
 
-Skills bundled with this workshop repo. Copied in so participants have everything they need after a single `git clone`.
+Skills bundled with the starter-vault. They travel with the vault when the participant copies `starter-vault/` into their chosen location (Path A / D), so no extra install step is needed.
 
 ## What's here
 
@@ -16,10 +16,6 @@ Skills bundled with this workshop repo. Copied in so participants have everythin
 
 ## For non-Claude agents
 
-Paths B (Notion), C (SharePoint), and D (agnostic) mostly do not use `.claude/skills/` directly. Their bootstrap docs explain the equivalents:
+Paths B (Notion), C (SharePoint), and E (Confluence) do not use these skills directly. Their bootstrap docs explain the equivalents (Notion Custom Instructions / ChatGPT Saved Prompts / Copilot agents / Power Automate flows). Path D (plain markdown, Claude Code) uses them as-is.
 
-- Copilot: `.github/copilot-instructions.md`
-- Cursor / Windsurf: `.cursorrules` / `.windsurfrules`
-- Codex / generic: `AGENTS.md`
-
-The `obsidian-vault` skill content is the most important - its SKILL.md effectively defines the vault conventions used across all paths.
+The `obsidian-vault` skill content is the most important -- its SKILL.md effectively defines the vault conventions used across all paths.

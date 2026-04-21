@@ -60,14 +60,9 @@ cp CLAUDE.md .github/copilot-instructions.md
 
 ---
 
-## Step 3: Copy the skills (Claude Code only)
+## Step 3: Skills (Claude Code only)
 
-Skip this step if the participant is not using Claude Code.
-
-```bash
-mkdir -p .claude/skills
-cp -R /path/to/capracon-second-brain/.claude/skills/* .claude/skills/
-```
+Skills already ship inside `starter-vault/.claude/skills/`, so they came along with the Step 1 copy. Nothing extra to do if the participant is using Claude Code.
 
 For Cursor, Windsurf, Codex, Copilot: the skills will not auto-load. But the core `obsidian-vault` skill content is already embedded in `CLAUDE.md`, so the conventions work regardless. For `youtube-transcribe` and `skill-creator`, the participant can still read the `SKILL.md` files as reference, but they will need to run the `yt-dlp` commands themselves.
 

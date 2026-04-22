@@ -98,6 +98,10 @@ claude mcp add --transport http notion https://mcp.notion.com/mcp
 
 Once restarted, run `/mcp` inside the session and complete the OAuth flow in the browser. Notion will ask which pages to grant access to -- pick the **"Second Brain"** parent page (or the whole workspace). Add `--scope user` to the original `mcp add` command if you want it available across all projects, not just this one.
 
+When `/mcp` reports **"Authentication successful"**, MCP is ready. Tell the agent:
+
+> *"Notion MCP is authenticated. Continue to Step 3."*
+
 **Claude Desktop** (claude.ai app): Settings -> **Connectors** -> add Notion. The connector is built in.
 
 > Requires Claude Pro / Max / Team / Enterprise. Free Claude Desktop accounts cannot add remote MCP connectors. If the participant is on a free plan, either switch to Claude Code (handles OAuth on any plan) or jump to Step 2b.

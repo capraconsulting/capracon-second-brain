@@ -30,7 +30,11 @@ Fork it if you want a mobile front-end to your own vault.
 ## Deeper Claude Code
 
 - [Claude Code docs](https://docs.anthropic.com/claude-code) - the canonical reference
-- **Skills**: you already wrote two in Challenge 2. Browse more at [github.com/anthropics/skills](https://github.com/anthropics/skills) and [github.com/obra/superpowers](https://github.com/obra/superpowers).
+- **Skills**: you already wrote two in Challenge 2. Browse more at [github.com/anthropics/skills](https://github.com/anthropics/skills) and [github.com/obra/superpowers](https://github.com/obra/superpowers). Install with the `skills` CLI, scope globally so they work in every vault:
+  ```bash
+  npx skills add https://github.com/anthropics/skills --skill docx pptx xlsx -g --agent claude-code -y
+  ```
+  The workshop deliberately does *not* bundle `docx` / `pptx` / `xlsx` because each is ~1.2 MB of Office Open XML schemas. Install them here if you want to generate Word docs, slide decks, or Excel sheets from vault notes (e.g. turn a `Learning` note into a one-pager for a colleague).
 - **Subagents**: specialist agents that get invoked for specific tasks. Great for code review, docs writing, or domain-specific work. See Claude Code docs -> Subagents.
 - **Hooks**: shell commands triggered on events (session start, tool use, user prompt). Useful for auto-committing your vault, playing a sound on task completion, or injecting context.
 - **MCP servers**: your agent's peripherals. Notion, Gmail, Google Calendar, Slack, Playwright, and hundreds more. [Claude Code MCP docs](https://docs.anthropic.com/claude-code/mcp).

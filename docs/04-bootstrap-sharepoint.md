@@ -29,6 +29,7 @@ By the end of this doc, the participant has:
 2. Either a declarative Copilot agent or an MCP-connected agent that knows the conventions
 3. The conventions doc from `starter-vault/CLAUDE.md` (SharePoint-adapted) saved in the site
 4. One real document saved in `Learning` or `Notes` with the right metadata columns and at least 2 internal links
+5. `SETUP.md` in the workshop repo filled in with the site URL and committed
 
 ---
 
@@ -50,12 +51,37 @@ On each library, add metadata columns (Library Settings -> **Create column**):
 
 | Column | Type | Purpose |
 |--------|------|---------|
-| Type | Choice | `meeting`, `learning`, `note`, `project`, `person` |
-| Tags | Choice (multi) or Managed Metadata | Free-form tagging |
-| Status | Choice | `draft`, `active`, `archived` |
-| Related | Lookup (to this library) | Cross-links between notes (the closest thing to `[[wiki links]]`) |
+| Type | Choice | See **Type values** below |
+| Tags | Choice (multi) or Managed Metadata | See **Tag values** below |
+| Status | Choice | See **Status values** below |
+| Related | Lookup (to this library) | Cross-links between documents (the closest thing to `[[wiki links]]`) |
 
 `Created` and `Modified` are auto-populated by SharePoint; do not try to set them.
+
+### Source of truth for taxonomy
+
+All `Type`, `Status`, and `Tag` values come from `starter-vault/CLAUDE.md`. **This applies to every path.** Each path just encodes the same taxonomy in its native primitives (YAML frontmatter / Notion select / SharePoint Choice / Confluence label). Do not invent values; if something is missing from `starter-vault/CLAUDE.md`, fix it there first and propagate.
+
+**Type values** (full set -- add the subset each library needs):
+
+`note`, `project`, `meeting`, `daily`, `resource`, `person`, `decision`, `learning`, `how-to-guide`, `brag`
+
+**Status values** (full set; depends on the type):
+
+`draft`, `active`, `planning`, `on-hold`, `completed`, `archived`
+
+- `learning`: `draft | active | completed`
+- `project`: `planning | active | on-hold | completed | archived`
+- `decision`: `active`
+- other types: no status field
+
+**Tag values** (pre-populate these; add more as the vault grows):
+
+- Source: `source/book`, `source/article`, `source/video`, `source/podcast`, `source/course`
+- Status tags: `status/todo`, `status/in-progress`, `status/done`, `status/waiting`
+- Area: `area/work`, `area/health`, `area/finance`
+
+SharePoint Choice columns are flat, so keep the slash syntax literally as the option value -- that way the `#tag/sub` convention from the starter vault still reads clearly.
 
 > **Column-naming gotcha.** SharePoint keeps the *display name* but Graph / MCP use the *internal name* (no spaces, set at creation). "Full Name" becomes `FullName` or similar. Check with `listColumns` before asking the agent to set fields.
 
@@ -114,11 +140,7 @@ Then install the server into VS Code via the Copilot Chat "Install MCP" flow. Au
 
 ## Step 3: Teach Copilot the conventions
 
-Save a copy of `starter-vault/CLAUDE.md` as a **SharePoint page** or a `.docx` in the site root, titled **"Conventions"**. SharePoint-specific tweaks:
-
-- Replace folder paths (`Learning/`) with library names (`Learning` library in the Second Brain site)
-- Replace `[[wiki links]]` with **sharing URLs** (`[Note title](https://tenant.sharepoint.com/sites/secondbrain/...)`) or **Related** lookup column entries
-- Replace YAML frontmatter with SharePoint metadata columns (see the table in Step 1)
+Copy the contents of `starter-vault/conventions-sharepoint.md` into a **SharePoint page** or a `.docx` in the site root, titled **"Conventions"**. This file is the SharePoint-adapted sibling of `starter-vault/CLAUDE.md` -- terminology (library), linking (sharing URL / Related lookup), and metadata (Choice columns) are already translated.
 
 Test: in Copilot Chat (or the declarative agent), ask:
 
@@ -142,7 +164,22 @@ If using the declarative agent (Step 2a) or plain Copilot (Step 2b), the agent d
 
 ---
 
-## Step 5: Hand off to challenges
+## Step 5: Record where the vault lives
+
+Open `SETUP.md` in this workshop repo and fill in the **Path C** section: site URL, document library, declarative agent name (if any), and whether extensibility is blocked. Set `Path: C` at the top and today's date. Delete the other path sections.
+
+```bash
+git add SETUP.md
+git commit -m "chore: record Path C SharePoint coordinates"
+```
+
+Push if the participant has their own remote.
+
+> **Why this step matters.** Enterprise setups churn. Tenant URLs change, agents get renamed, libraries get reorganized. `SETUP.md` is the one place the next agent session can look to get current.
+
+---
+
+## Step 6: Hand off to challenges
 
 Go to `docs/06-challenges.md`.
 
@@ -170,7 +207,7 @@ Go to `docs/06-challenges.md`.
 
 ## Known limitations of Path C
 
-- No Claude Code skills (pptx, docx, youtube-transcribe). Closest equivalents are Copilot agents or Power Automate flows, both more limited.
+- No local Claude Code skills (`youtube-transcribe`, `skill-creator`, `brainstorming`, `obsidian-vault`, or any Office skills installed via `skills` CLI). Closest equivalents are Copilot agents or Power Automate flows, both more limited.
 - Autonomous writes require either the Work IQ MCP server (admin consent) or Copilot Studio actions (extra license). Default path is "agent drafts, user saves".
 - `[[wiki links]]` do not exist natively. The Modern SharePoint replacement is sharing URLs or Related lookup columns; the graph is implicit.
 - File-size cap of 5 MB on the SharePoint MCP server. Large PDFs will not flow through it.

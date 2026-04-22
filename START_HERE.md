@@ -10,6 +10,8 @@ You (the agent) are helping someone build their own AI-augmented second brain du
 
 **Do not assume.** Ask before you write anything to disk.
 
+**Already bootstrapped?** If `SETUP.md` in this repo has the fields filled in (not `<TODO>`), the participant has already been through this once. Read `SETUP.md`, confirm the details are still current, then skip ahead to challenges (Step 4).
+
 ---
 
 ## Step 1: Run the stack quiz
@@ -68,8 +70,9 @@ Follow the doc you routed to. At the end of bootstrap the participant should hav
 - Frontmatter conventions in place (see `starter-vault/CLAUDE.md`)
 - One real note saved in the right place with correct frontmatter and 2-3 `[[wiki links]]` (even if the link targets do not exist yet - that is fine)
 - The agent has read `starter-vault/CLAUDE.md` (or the equivalent for their stack)
+- `SETUP.md` in this repo filled in and committed. Vault path / Notion page URL / SharePoint site / Confluence space -- whatever applies to their path. This is how the **next** agent session knows where the vault lives without running the quiz again.
 
-Do not move on until all four are true.
+Do not move on until all five are true.
 
 ---
 

@@ -12,6 +12,7 @@ By the end of this doc, the participant has:
 2. Atlassian Rovo MCP (hosted) connected to their agent, or a community MCP fallback if the tenant blocks it
 3. The agent has read the conventions from `starter-vault/CLAUDE.md` (adapted for Confluence)
 4. One real page saved under `Learning` or `Notes` with labels, properties, and at least 2 inline page links
+5. `SETUP.md` in the workshop repo filled in with the space key and committed
 
 ---
 
@@ -42,19 +43,44 @@ In Confluence, create a space called **"Second Brain"** (type: Personal or Team,
 - `Reference`
 - `Notes`
 
-Add space **Labels** that stand in for tags: `meeting`, `learning`, `note`, `project`, `draft`, `active`, `archived`.
-
 For structured metadata use **Content Properties** (JSON blobs attached to a page, set via `PUT /wiki/rest/api/content/{id}/property/{key}`) or the **Page Properties macro** (human-readable, reportable via Page Properties Report macro). Either is fine. Recommendation: content properties for agent-written metadata, Page Properties macro for anything humans will query visually.
 
-Map frontmatter to Confluence:
+### Source of truth for taxonomy
+
+All type, status, and tag values come from `starter-vault/CLAUDE.md`. **This applies to every path.** Each path just encodes the same taxonomy in its native primitives (YAML frontmatter / Notion select / SharePoint Choice / Confluence label). Do not invent values; if something is missing from `starter-vault/CLAUDE.md`, fix it there first and propagate.
+
+Confluence labels are flat per-space, so encode slashes literally (`source/book`, not a nested taxonomy).
+
+### Labels to add to the space
+
+**Type labels** (one per page, based on what the page is):
+
+`note`, `project`, `meeting`, `daily`, `resource`, `person`, `decision`, `learning`, `how-to-guide`, `brag`
+
+**Status labels** (one per page where applicable):
+
+- `learning`: `draft`, `active`, `completed`
+- `project`: `planning`, `active`, `on-hold`, `completed`, `archived`
+- `decision`: `active`
+- other types: no status
+
+Full union: `draft`, `active`, `planning`, `on-hold`, `completed`, `archived`.
+
+**Tag labels** (multiple per page; pre-populate these, add more as needed):
+
+- Source: `source/book`, `source/article`, `source/video`, `source/podcast`, `source/course`
+- Status tags: `status/todo`, `status/in-progress`, `status/done`, `status/waiting`
+- Area: `area/work`, `area/health`, `area/finance`
+
+### Map frontmatter to Confluence
 
 | Frontmatter (Obsidian) | Confluence |
 |-----------------------|------------|
-| `type` | Label (`meeting`, `learning`, ...) |
+| `type` | Label (one of the type labels above) |
 | `created` | Auto (page creation timestamp) |
 | `tags` | Labels (multi) |
 | `related` | Inline page links in the body, or a Page Properties row |
-| `status` | Label (`draft`, `active`, `archived`) |
+| `status` | Label (one of the status labels above, where applicable) |
 | `source`, `author` | Page properties or a table at the top of the page |
 
 ---
@@ -83,14 +109,24 @@ Requires Node.js 18+. First run opens a browser for Atlassian OAuth consent. Pic
 **Claude Code one-liner** (no config file):
 
 ```bash
-claude mcp add --transport http atlassian https://mcp.atlassian.com/v1/mcp
+claude mcp add --transport http --scope user atlassian https://mcp.atlassian.com/v1/mcp
 ```
 
 Then run `/mcp` in the session to finish the OAuth flow.
 
+> **Why `--scope user`?** Without it, the MCP is added only to the current project. `--scope user` makes it available across every Claude Code session, which is what most participants want for a knowledge-base MCP (you'll hit your vault from many directories over time).
+
 **Tenant-lockdown warning.** The first user in a tenant to consent must have rights to install Marketplace apps. Many Capra clients have this disabled -- the OAuth flow errors with a generic "app not authorized" message. If that happens, jump to Step 2b.
 
-**Ops the Rovo MCP supports**: create page, update page, search (Rovo Search + Fetch semantic), summarize page, list spaces, plus Jira ops you won't need today. Labels and content properties are not called out in the public tool list; fall back to raw REST for those when needed.
+**Ops the Rovo MCP supports**: create page, update page, search (Rovo Search + Fetch semantic), summarize page, list spaces, plus Jira ops you won't need today.
+
+**Ops the Rovo MCP does NOT support** (confirmed during dogfood 22.04.2026): **labels** and **content properties**. `conventions-confluence.md` says every page should carry a type label (plus optional status + tag labels) and structured fields like `author`, `source`, `due`, `last_updated` as content properties. You have three ways to cover the gap:
+
+1. **Inline metadata table at the top of the page** (easiest). Put a two-column `|Field|Value|` table with `type`, `status`, `tags`, `author`, `source` etc. Humans see it rendered; agents parse it as CQL-searchable text. This is what the Path E dogfood used; pages still link and backlink correctly.
+2. **Raw REST** (strict convention fidelity). After creating a page with the MCP, hit `POST /wiki/rest/api/content/{id}/label` with an API token for labels, `PUT /wiki/rest/api/content/{id}/property/{key}` for content properties. Needs a token from <https://id.atlassian.com/manage-profile/security/api-tokens>.
+3. **Switch to the sooperset MCP** (Step 2b). Covers labels and properties natively. Worth it if labels are load-bearing for your workflow (e.g. you rely on a Page Properties Report macro).
+
+> **Flag to participants upfront**: if they pick Path E and lean on labels for search / filtering, they need a plan from day one -- not a half-configured setup where labels are missing.
 
 ---
 
@@ -141,17 +177,7 @@ For agents without MCP support or tenants where even `sooperset` is blocked:
 
 ## Step 3: Teach the agent the conventions
 
-Create a Confluence page called **"Vault Instructions"** in the "Second Brain" space root. Paste the contents of `starter-vault/CLAUDE.md` and adapt:
-
-- Replace "folder" with "page" or "space"
-- Replace `[[wiki links]]` with **inline page links** in Confluence storage format:
-
-  ```xml
-  <ac:link><ri:page ri:content-title="Target Page Title"/><ac:link-body>Display text</ac:link-body></ac:link>
-  ```
-
-  Omit `ac:link-body` to auto-use the page title. For agents that prefer ADF, use an `inlineCard` block with the page URL.
-- Replace YAML frontmatter with labels + content properties (see the mapping table in Step 1)
+Create a Confluence page called **"Vault Instructions"** in the "Second Brain" space root and paste the contents of `starter-vault/conventions-confluence.md` into it. This file is the Confluence-adapted sibling of `starter-vault/CLAUDE.md` -- terminology (page / space), linking (`ac:link` / `inlineCard`), and metadata (labels + content properties) are already translated.
 
 Then tell the agent:
 
@@ -179,7 +205,22 @@ Same flow as Path A Step 5. Pick something small. The agent should:
 
 ---
 
-## Step 5: Hand off to challenges
+## Step 5: Record where the vault lives
+
+Open `SETUP.md` in this workshop repo and fill in the **Path E** section: base URL, space key, MCP flavor (Rovo hosted / sooperset local / raw REST), and the parent page ID if you are rooting under a specific page. Set `Path: E` at the top and today's date. Delete the other path sections.
+
+```bash
+git add SETUP.md
+git commit -m "chore: record Path E Confluence coordinates"
+```
+
+Push if the participant has their own remote.
+
+> **Why this step matters.** Confluence spaces often live in a tenant the participant doesn't own (client engagement). `SETUP.md` is how the next agent session knows which tenant / space / MCP flavor to target -- none of that is inferable from file system or git state.
+
+---
+
+## Step 6: Hand off to challenges
 
 Go to `docs/06-challenges.md`.
 
@@ -206,7 +247,7 @@ Go to `docs/06-challenges.md`.
 
 ## Known limitations of Path E
 
-- No Claude Code skills (pptx, docx, youtube-transcribe). Same trade-off as Paths B and C.
+- No local Claude Code skills (`youtube-transcribe`, `skill-creator`, `brainstorming`, `obsidian-vault`, or any Office skills installed via `skills` CLI). Same trade-off as Paths B and C.
 - Storage format (XHTML with namespaces) is stricter than markdown. The MCP servers handle it; raw REST requires careful templating.
 - Labels are flat per-space. No nested taxonomy. Use multiple labels or content properties for richer structure.
 - Spaces are heavy (own permissions, admin). Don't create a new space per folder; nest everything under one "Second Brain" space.

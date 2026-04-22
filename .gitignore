@@ -10,3 +10,6 @@ node_modules/
 # Obsidian workspace state (participants' local)
 starter-vault/.obsidian/workspace*
 starter-vault/.obsidian/cache
+
+# Participant's local Claude Code state inside the starter-vault
+starter-vault/.claude/settings.local.json

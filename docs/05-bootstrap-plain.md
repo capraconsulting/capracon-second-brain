@@ -12,6 +12,7 @@ By the end of this doc, the participant has:
 2. Their agent of choice (Cursor, Windsurf, Cline, Codex, Copilot, or Claude Code) configured to read the conventions
 3. The agent has internalized `CLAUDE.md` / `AGENTS.md` / whichever convention file their agent reads
 4. One real note saved in `Learning/` or `Notes/` with correct frontmatter and at least 2 wiki links
+5. `SETUP.md` in the workshop repo filled in with the vault path and committed
 
 ---
 
@@ -59,16 +60,17 @@ cp CLAUDE.md .github/copilot-instructions.md
 
 ---
 
-## Step 3: Copy the skills (Claude Code only)
+## Step 3: Skills (Claude Code only)
 
-Skip this step if the participant is not using Claude Code.
+Four workshop-critical skills ship inside `starter-vault/.claude/skills/` and came along with the Step 1 copy: `obsidian-vault`, `youtube-transcribe`, `skill-creator`, `brainstorming`. Nothing extra to do for the workshop.
+
+**Optional:** if the participant wants Word / PowerPoint / Excel export skills, install globally:
 
 ```bash
-mkdir -p .claude/skills
-cp -R /path/to/capracon-second-brain/.claude/skills/* .claude/skills/
+npx skills add https://github.com/anthropics/skills --skill docx pptx xlsx -g --agent claude-code -y
 ```
 
-For Cursor, Windsurf, Codex, Copilot: the skills will not auto-load. But the core `obsidian-vault` skill content is already embedded in `CLAUDE.md`, so the conventions work regardless. For `youtube-transcribe` and `skill-creator`, the participant can still read the `SKILL.md` files as reference, but they will need to run the `yt-dlp` commands themselves.
+For Cursor, Windsurf, Codex, Copilot: the bundled skills will not auto-load. But the core `obsidian-vault` skill content is already embedded in `CLAUDE.md`, so the conventions work regardless. For `youtube-transcribe` and `skill-creator`, the participant can still read the `SKILL.md` files as reference, but they will need to run the `yt-dlp` commands themselves.
 
 ---
 
@@ -123,7 +125,22 @@ The note should have:
 
 ---
 
-## Step 7: Hand off to challenges
+## Step 7: Record where the vault lives
+
+Open `SETUP.md` in this workshop repo and fill in the **Path D** section (vault path, git remote, which agent config files you created, primary agent). Set `Path: D` at the top and today's date. Delete the other path sections.
+
+```bash
+git add SETUP.md
+git commit -m "chore: record Path D plain-markdown vault coordinates"
+```
+
+Push if the participant has their own remote.
+
+> **Why this step matters.** Path D is deliberately multi-agent. `SETUP.md` lets whichever agent you open next know which folder is the vault and which convention file to read.
+
+---
+
+## Step 8: Hand off to challenges
 
 Go to `docs/06-challenges.md`.
 

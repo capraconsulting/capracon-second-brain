@@ -75,13 +75,13 @@ Starter-vault ships with a simplified version of Magnus' vault `CLAUDE.md`. Conv
 
 ### Decision 6: Copy skills, don't reference
 
-Skills get copied into `.claude/skills/` in the repo so participants don't need to install anything else and the skills work offline once cloned. Bundled set:
+Skills get bundled inside `starter-vault/.claude/skills/` so they travel with the vault when the participant copies `starter-vault/` into their chosen location. Participants don't need to install anything else and the skills work offline once cloned. Bundled set:
 
 - `obsidian-vault` (core conventions, sourced from `~/.claude/skills/obsidian-vault`)
 - `youtube-transcribe` (for Challenge 1, sourced from `~/dev/personal/vault/.claude/skills/youtube-transcribe`)
 - `skill-creator` (for Challenge 2 guide, sourced from `~/.claude/skills/skill-creator`)
 - `brainstorming` (for Challenge 2 scoping, sourced from [obra/superpowers](https://github.com/obra/superpowers))
-- `pptx`, `xlsx`, `docx` (bonus: vault-to-deliverable exports, sourced from [anthropics/skills](https://github.com/anthropics/skills))
+- `pptx`, `xlsx`, `docx` are **not** bundled (3.6 MB of Office Open XML schemas would dominate the repo). Participants who want Office exports install them post-workshop with the `skills` CLI: `npx skills add https://github.com/anthropics/skills --skill docx pptx xlsx -g --agent claude-code -y`. See `docs/07-going-further.md`.
 
 ---
 

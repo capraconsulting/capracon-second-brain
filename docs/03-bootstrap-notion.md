@@ -12,21 +12,60 @@ By the end of this doc, the participant has:
 2. Notion MCP connected to their agent (hosted, OAuth-based, no tokens)
 3. The agent has read the conventions from `starter-vault/CLAUDE.md` (adapted for Notion)
 4. One real page saved in `Learning` or `Notes` with the right properties and at least 2 `@page` mentions
+5. `SETUP.md` in the workshop repo filled in with the Notion parent page URL and committed
 
 ---
 
 ## Step 1: Notion workspace setup
 
+**Before doing anything else, get the parent page URL from the participant.** Ask:
+
+> *"Paste the Notion share link to the page you want to use as the root of your Second Brain. If you do not have one yet, create a top-level page in Notion called 'Second Brain' (or whatever you want) and share the link."*
+
+You will need this URL both for creating the sub-structure via MCP and for filling in `SETUP.md` at the end.
+
 Ask the participant to open Notion and create a top-level page called **"Second Brain"** (or whatever they want). Inside it, create:
 
-- `Personal/` (plain page, child pages for anything private)
-- `Projects/` (plain page, one child per active project)
-- `Meetings/` (**database** with properties: `type` select, `attendees` multi-select, `date` date)
-- `Learning/` (**database** with properties: `type` select, `source` URL, `author` text, `status` select, `tags` multi-select)
-- `Reference/` (plain page, child pages for docs / cheatsheets / links)
-- `Notes/` (plain page, child pages for loose notes)
+- `Personal` (plain page, child pages for anything private)
+- `Projects` (plain page, one child per active project)
+- `Meetings` (**database**, schema below)
+- `Learning` (**database**, schema below)
+- `Reference` (plain page, child pages for docs / cheatsheets / links)
+- `Notes` (plain page, child pages for loose notes)
 
-Recommendation: use Notion databases for `Learning` and `Meetings` (where structured queries matter). Plain pages are fine everywhere else. Databases map 1:1 to frontmatter fields in the starter-vault `.md` files:
+Recommendation: use Notion databases for `Learning` and `Meetings` (where structured queries matter). Plain pages are fine everywhere else.
+
+### Source of truth for taxonomy
+
+All `type`, `status`, and `tag` values come from `starter-vault/CLAUDE.md`. **This applies to every path.** Each path just encodes the same taxonomy in its native primitives (YAML frontmatter / Notion select / SharePoint Choice / Confluence label). Do not invent values; if something is missing from `starter-vault/CLAUDE.md`, fix it there first and propagate.
+
+### Meetings database schema
+
+Each row is one meeting. Meetings do not carry a `status` field per `starter-vault/CLAUDE.md`.
+
+| Property | Type | Options |
+|----------|------|---------|
+| `Meeting` | Title | (title column) |
+| `type` | Select | `meeting` |
+| `date` | Date | -- |
+| `attendees` | Multi-select | (empty; add people as they appear) |
+
+### Learning database schema
+
+Each row is one book / article / video / course / podcast takeaway.
+
+| Property | Type | Options |
+|----------|------|---------|
+| `Title` | Title | (title column) |
+| `type` | Select | `learning` |
+| `source` | URL | -- |
+| `author` | Text | -- |
+| `status` | Select | `draft`, `active`, `completed` (matches the `learning` type in `starter-vault/CLAUDE.md`) |
+| `tags` | Multi-select | pre-populate: `source/book`, `source/article`, `source/video`, `source/podcast`, `source/course`. Notion flattens hierarchical tags; keep the slash syntax so the `#source/*` convention from the starter vault still reads clearly. |
+
+> **Why single-option selects?** `type = meeting` / `type = learning` look redundant (every row has the same value). Keep them anyway: they map 1:1 to the `type` frontmatter field, which makes cross-vault search and future migrations (e.g. Notion -> plain markdown) trivial.
+
+### Frontmatter <-> Notion mapping
 
 | Frontmatter (Obsidian) | Notion property |
 |-----------------------|-----------------|
@@ -101,11 +140,7 @@ Only needed for free-tier Claude Desktop users, or if the participant explicitly
 
 ## Step 3: Teach the agent the conventions
 
-Save a copy of `starter-vault/CLAUDE.md` as a Notion page called **"Vault Instructions"** inside the "Second Brain" parent. Adjust terminology:
-
-- Replace "folder" with "page" or "database"
-- Replace `[[wiki links]]` with Notion `@page` mentions or inline page links
-- Replace YAML frontmatter with database properties (see the mapping table in Step 1)
+Copy the contents of `starter-vault/conventions-notion.md` into a Notion page called **"Vault Instructions"** inside the "Second Brain" parent. This file is the Notion-adapted sibling of `starter-vault/CLAUDE.md` -- terminology (page / database), linking (`@page` mentions), and properties are already translated.
 
 Then tell the agent:
 
@@ -131,7 +166,24 @@ Same flow as Path A Step 5. Pick something small the participant actually wants 
 
 ---
 
-## Step 5: Hand off to challenges
+## Step 5: Record where the vault lives
+
+Open `SETUP.md` in this workshop repo and fill in the **Path B** section: parent page URL, parent page ID (the 32-character hex string in the URL), workspace, MCP transport, and the databases you created. Set `Path: B` at the top and today's date. Delete the other path sections.
+
+Commit it:
+
+```bash
+git add SETUP.md
+git commit -m "chore: record Path B Notion coordinates"
+```
+
+Push if the participant has their own remote.
+
+> **Why this step matters.** Without `SETUP.md`, the next agent session you start has no idea which Notion page is your root and will run you through the stack quiz again.
+
+---
+
+## Step 6: Hand off to challenges
 
 Go to `docs/06-challenges.md`.
 
@@ -156,7 +208,7 @@ Challenge 2 (build skills) needs adaptation: Notion has no equivalent of Claude 
 
 ## Known limitations of Path B
 
-- No Claude Code skills (pptx, docx, youtube-transcribe). Use ChatGPT / Claude.ai features or run CLI tools manually and paste.
+- No local Claude Code skills (`youtube-transcribe`, `skill-creator`, `brainstorming`, `obsidian-vault`, or any Office skills installed via `skills` CLI). Use ChatGPT / Claude.ai features or run CLI tools manually and paste.
 - Backlinks are implicit (via `@page` mentions) rather than a two-way wiki-link graph. Notion's "Backlinks" panel on each page shows the inverse.
 - Local-first users lose the "works offline, lives in my git repo" property of a plain markdown vault.
 - Team workspaces are shared by default. Consider a personal workspace for the `Personal/` page.

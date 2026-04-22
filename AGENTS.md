@@ -82,10 +82,8 @@ A user picks one via the quiz in `START_HERE.md`. Each path needs its own `docs/
 │           ├── obsidian-vault/       # Core vault conventions (also drives starter-vault/CLAUDE.md)
 │           ├── youtube-transcribe/   # Challenge 1
 │           ├── skill-creator/        # Challenge 2 guide
-│           ├── brainstorming/        # Challenge 2 scoping helper (obra/superpowers)
-│           ├── pptx/                 # Bonus: vault -> slides
-│           ├── xlsx/                 # Bonus: vault -> spreadsheet
-│           └── docx/                 # Bonus: vault -> Word doc
+│           └── brainstorming/        # Challenge 2 scoping helper (obra/superpowers)
+#           (docx / pptx / xlsx are NOT bundled; install post-workshop via `npx skills add`)
 ```
 
 The `.claude/` directory lives **inside `starter-vault/`**, not at the repo root. The workshop is about teaching participants to set up their *vault*, and skills / hooks / commands are vault-level artifacts: they travel with the vault when the participant copies `starter-vault/` into their chosen location.
@@ -107,7 +105,7 @@ The `.claude/` directory lives **inside `starter-vault/`**, not at the repo root
 - `starter-vault/CLAUDE.md` + `AGENTS.md` -- vault conventions (simplified from Magnus' personal vault)
 - `starter-vault/Templates/{Note,Learning,Person,Meeting}.md`
 - `starter-vault/` folder skeleton with `.gitkeep` stubs
-- `starter-vault/.claude/skills/` -- 7 skills bundled: `obsidian-vault`, `youtube-transcribe`, `skill-creator`, `brainstorming`, `pptx`, `xlsx`, `docx`
+- `starter-vault/.claude/skills/` -- 4 workshop-critical skills bundled: `obsidian-vault`, `youtube-transcribe`, `skill-creator`, `brainstorming`. Office skills (`docx`, `pptx`, `xlsx`) are **not** bundled; they're 3.6 MB of Office Open XML schemas each, installed post-workshop via `npx skills add https://github.com/anthropics/skills --skill docx pptx xlsx -g --agent claude-code -y`.
 - `starter-vault/.claude/hooks/` -- `validate-frontmatter.sh` (PostToolUse), `session-context.sh` (SessionStart)
 - `starter-vault/.claude/commands/` -- `/daily`, `/note`, `/meeting`, `/inbox`, `/link`
 - `starter-vault/.claude/settings.json` -- hook wiring

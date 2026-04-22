@@ -94,17 +94,26 @@ If Claude gets any of those wrong, re-read `CLAUDE.md` with it before proceeding
 
 ## Step 4: Verify the skills are in the vault
 
-The starter-vault already ships with skills under `$VAULT/.claude/skills/` (they came along with the Step 2 copy). Skills bundled:
+The starter-vault already ships with four workshop-critical skills under `$VAULT/.claude/skills/` (they came along with the Step 2 copy):
 
 - `obsidian-vault` -- core conventions, referenced by the vault CLAUDE.md
 - `youtube-transcribe` -- used in Challenge 1
 - `skill-creator` -- used in Challenge 2 when the participant writes their own skills
 - `brainstorming` -- used in Challenge 2 before picking what skill to build
-- `docx`, `pptx`, `xlsx` -- for turning vault notes into shareable deliverables later
 
 Verify Claude can see them:
 
 > *"List the skills in `.claude/skills/`."*
+
+### Optional: Office export skills (install post-workshop)
+
+If the participant wants to export vault notes to Word / PowerPoint / Excel later, install the Office skills globally with the `skills` CLI:
+
+```bash
+npx skills add https://github.com/anthropics/skills --skill docx pptx xlsx -g --agent claude-code -y
+```
+
+`-g` puts them in user scope (available across every Claude Code session). Not needed for the workshop itself; these skills total ~3.6 MB of Office Open XML schemas and would bloat the workshop repo if vendored. Point participants at this when they ask about exports in `docs/07-going-further.md`.
 
 ---
 

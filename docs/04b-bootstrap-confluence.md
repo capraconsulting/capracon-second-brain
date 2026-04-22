@@ -247,7 +247,7 @@ Go to `docs/06-challenges.md`.
 
 ## Known limitations of Path E
 
-- No Claude Code skills (pptx, docx, youtube-transcribe). Same trade-off as Paths B and C.
+- No local Claude Code skills (`youtube-transcribe`, `skill-creator`, `brainstorming`, `obsidian-vault`, or any Office skills installed via `skills` CLI). Same trade-off as Paths B and C.
 - Storage format (XHTML with namespaces) is stricter than markdown. The MCP servers handle it; raw REST requires careful templating.
 - Labels are flat per-space. No nested taxonomy. Use multiple labels or content properties for richer structure.
 - Spaces are heavy (own permissions, admin). Don't create a new space per folder; nest everything under one "Second Brain" space.

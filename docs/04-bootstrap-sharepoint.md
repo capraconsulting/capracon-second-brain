@@ -207,7 +207,7 @@ Go to `docs/06-challenges.md`.
 
 ## Known limitations of Path C
 
-- No Claude Code skills (pptx, docx, youtube-transcribe). Closest equivalents are Copilot agents or Power Automate flows, both more limited.
+- No local Claude Code skills (`youtube-transcribe`, `skill-creator`, `brainstorming`, `obsidian-vault`, or any Office skills installed via `skills` CLI). Closest equivalents are Copilot agents or Power Automate flows, both more limited.
 - Autonomous writes require either the Work IQ MCP server (admin consent) or Copilot Studio actions (extra license). Default path is "agent drafts, user saves".
 - `[[wiki links]]` do not exist natively. The Modern SharePoint replacement is sharing URLs or Related lookup columns; the graph is implicit.
 - File-size cap of 5 MB on the SharePoint MCP server. Large PDFs will not flow through it.

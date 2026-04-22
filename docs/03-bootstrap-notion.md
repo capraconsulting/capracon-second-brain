@@ -208,7 +208,7 @@ Challenge 2 (build skills) needs adaptation: Notion has no equivalent of Claude 
 
 ## Known limitations of Path B
 
-- No Claude Code skills (pptx, docx, youtube-transcribe). Use ChatGPT / Claude.ai features or run CLI tools manually and paste.
+- No local Claude Code skills (`youtube-transcribe`, `skill-creator`, `brainstorming`, `obsidian-vault`, or any Office skills installed via `skills` CLI). Use ChatGPT / Claude.ai features or run CLI tools manually and paste.
 - Backlinks are implicit (via `@page` mentions) rather than a two-way wiki-link graph. Notion's "Backlinks" panel on each page shows the inverse.
 - Local-first users lose the "works offline, lives in my git repo" property of a plain markdown vault.
 - Team workspaces are shared by default. Consider a personal workspace for the `Personal/` page.

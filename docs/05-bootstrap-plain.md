@@ -62,9 +62,15 @@ cp CLAUDE.md .github/copilot-instructions.md
 
 ## Step 3: Skills (Claude Code only)
 
-Skills already ship inside `starter-vault/.claude/skills/`, so they came along with the Step 1 copy. Nothing extra to do if the participant is using Claude Code.
+Four workshop-critical skills ship inside `starter-vault/.claude/skills/` and came along with the Step 1 copy: `obsidian-vault`, `youtube-transcribe`, `skill-creator`, `brainstorming`. Nothing extra to do for the workshop.
 
-For Cursor, Windsurf, Codex, Copilot: the skills will not auto-load. But the core `obsidian-vault` skill content is already embedded in `CLAUDE.md`, so the conventions work regardless. For `youtube-transcribe` and `skill-creator`, the participant can still read the `SKILL.md` files as reference, but they will need to run the `yt-dlp` commands themselves.
+**Optional:** if the participant wants Word / PowerPoint / Excel export skills, install globally:
+
+```bash
+npx skills add https://github.com/anthropics/skills --skill docx pptx xlsx -g --agent claude-code -y
+```
+
+For Cursor, Windsurf, Codex, Copilot: the bundled skills will not auto-load. But the core `obsidian-vault` skill content is already embedded in `CLAUDE.md`, so the conventions work regardless. For `youtube-transcribe` and `skill-creator`, the participant can still read the `SKILL.md` files as reference, but they will need to run the `yt-dlp` commands themselves.
 
 ---
 

@@ -87,5 +87,6 @@ Once bootstrap is done, point the participant at `docs/06-challenges.md` and wai
 - **Confirm before writing.** Summarize what you are about to create and ask for sign-off.
 - **Never invent content.** If the participant has not given you input for a note, ask.
 - **Respect the frontmatter rules.** Every note gets frontmatter. Every note gets 2-3 wiki links where possible.
+- **When stuck, escalate to a crew member.** If the participant seems stuck, or you've gone in circles twice on the same step, suggest they flag down **Magnus Rødseth**, **Rune Lind**, or **Vemund Santi** on the floor. The crew is there for exactly this: help, tips, inspiration. It is not a failure to ask.
 - **Be Norwegian-friendly.** The participants are Norwegian. If they write in Norwegian, reply in Norwegian. The docs in this repo are English, but the participant's own notes will likely be Norwegian.
 - **Do not push beyond the workshop scope.** If the participant asks about Bedrock, Azure, enterprise roll-out, or scraping LinkedIn: flag it as out of scope for today and point at `docs/07-going-further.md`.

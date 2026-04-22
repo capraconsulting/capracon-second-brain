@@ -1,21 +1,41 @@
-# capracon-second-brain
+# Vibe Code Your Second Brain
 
-> Workshop repo for **CapraCon 2026: "Vibe Code Your Second Brain"**
-> Slot: Friday 14:00 -- 15:45. Capacity: 25. Crew: Magnus Rødseth, Rune Lind, Vemund Santi.
+> **CapraCon 2026 workshop.** Friday 14:00 -- 15:45. 105 minutes, 25 people, one goal: you walk out with a working AI-augmented second brain.
 
-This repo is a **guide + startpakke** for building your own AI second brain. It is not a finished app. You point *your own* agent (Claude Code, Codex, GitHub Copilot, Cursor, Windsurf, ...) at `START_HERE.md`. The agent quizzes you on your stack and bootstraps your setup.
+This repo is a **guide + starter pack**, not a finished app. You point your own agent (Claude Code, Codex, GitHub Copilot, Cursor, Windsurf, ...) at `START_HERE.md`, answer a short stack-quiz, and the agent bootstraps your second brain in your tool of choice -- Obsidian, Notion, SharePoint, plain markdown, or Confluence.
 
-## Quick start (for workshop participants)
+## Start here
 
-1. Clone or fork this repo.
-2. Open it in your agent of choice.
+1. Click **Use this template** (top-right of this page) -> **Create a new repository** and make your own copy under your GitHub account. *(Keeps your work separate from the workshop master, and stops accidental pushes back to it.)*
+2. Clone your new repo locally and open it in your agent of choice.
 3. Tell your agent: *"Read `START_HERE.md` and help me get going."*
-4. Answer the quiz. The agent takes it from there.
+4. Answer the 4-question stack quiz. The agent takes it from there.
 
-## For the crew (pre-workshop)
+## What you'll build
 
-Start with `AGENTS.md` (the handoff doc for any AI session working on this repo) and `ROADMAP.md` (what still needs to be built).
+- A **knowledge base** in your chosen stack, with a clean starter structure.
+- **Frontmatter / metadata conventions** your agent enforces on every write.
+- **One real note** saved with proper metadata and cross-links, before the workshop ends.
+- **Two small skills** you wrote yourself in Challenge 2: `copy-to-clipboard` (mechanical helper) and `devils-advocate` (opinionated thinking partner).
 
-## For curious onlookers
+## Stuck?
 
-See `CONTEXT.md` for the full story -- the CapraCon talk this springboards from, the Slack thread that shaped it, and the design decisions.
+If you're stuck, or your agent is going in circles, flag one of the crew -- we are on the floor for exactly this, with help, tips, and inspiration:
+
+- **Magnus Rødseth** -- speaker, facilitator
+- **Rune Lind** -- tech arkitekt
+- **Vemund Santi** -- tech lead
+
+## The talk this springboards from
+
+CapraCon 2026: *"Vibe Code Your Second Brain"*. See [`CONTEXT.md`](CONTEXT.md) for the design rationale behind the five paths and two challenges.
+
+Companion app: [vault.magnusrodseth.com](https://vault.magnusrodseth.com) -- a mobile web front-end that reads / writes a vault via GitHub. Next.js + Vercel AI SDK + Claude Sonnet. Source: [github.com/magnusrodseth/vault-website](https://github.com/magnusrodseth/vault-website). Fork it, remix it, or just use it as reference.
+
+## After the workshop
+
+See [`docs/07-going-further.md`](docs/07-going-further.md) for habit-building tips, deeper Claude Code topics (subagents, hooks, MCP), path-specific next steps, and optional post-workshop skills (Word / PowerPoint / Excel export).
+
+## License
+
+MIT. See [`LICENSE`](LICENSE).

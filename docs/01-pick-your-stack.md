@@ -55,6 +55,34 @@ Does the participant / their client run Atlassian (Confluence / Jira)?
 
 ---
 
+## Capabilities and limits per path
+
+Knowing what each path *can* and *cannot* do is important before a participant commits 15 minutes of bootstrap time. This table reflects what was verified end-to-end during dogfood runs; some cells are nuanced (see footnotes).
+
+| Capability | A (Obsidian) | B (Notion + hosted MCP) | C (SharePoint + Copilot) | D (plain markdown) | E (Rovo MCP) | E (sooperset fallback) |
+|------------|:------------:|:------------------------:|:-------------------------:|:-------------------:|:-------------:|:-----------------------:|
+| Create / update pages from the agent | ✓ | ✓ | Δ¹ | ✓ | ✓ | ✓ |
+| Set structured metadata | ✓ (YAML frontmatter) | ✓ (DB properties) | ✓ (Choice columns) | ✓ (YAML) | ✗ via MCP² | ✓ (labels + properties) |
+| Apply labels / tags | ✓ (tags in frontmatter) | ✓ (multi-select) | ✓ (Choice-multi) | ✓ | ✗ via MCP² | ✓ |
+| Inline page links / graph | ✓ (`[[wiki links]]` + Graph View) | ✓ (`@page` + Backlinks) | Δ³ (sharing URL / Related lookup) | ✓ (text wiki links) | ✓ (`ac:link` + Backlinks) | ✓ |
+| Auto-backlinks | manual | ✓ | manual | manual | ✓ | ✓ |
+| Search the vault from the agent | ✓ (grep) | ✓ (Notion search / MCP) | ✓ (Copilot grounding) | ✓ (grep) | ✓ (CQL) | ✓ (CQL) |
+| Claude Code skills (`yt-transcribe`, etc.) | ✓ | ✗⁴ | ✗ | ✓ | ✗⁴ | ✗⁴ |
+| `PostToolUse` hooks (e.g. frontmatter validator) | ✓ | ✗ | ✗ | ✓ | ✗ | ✗ |
+| Works offline | ✓ | ✗ | ✗ | ✓ | ✗ | ✗ |
+| Cost at workshop scale | free | free⁵ | needs M365 Copilot license | free | free⁶ | free⁶ |
+
+Footnotes:
+
+1. **C writes are constrained.** Plain Copilot Chat / declarative agents are read-biased (they draft and you save). Full writes need either the Work IQ SharePoint MCP (admin consent) or a Copilot Studio action (extra license).
+2. **Rovo MCP limits, confirmed 22.04.2026.** The hosted `https://mcp.atlassian.com/v1/mcp` tool surface covers page CRUD + search but not labels and not content properties. For type / status / tag labels and for fields like `author`, `source`, `due`, fall back to either (a) the `sooperset/mcp-atlassian` MCP, which covers labels, or (b) raw REST with an API token. A practical workaround used during the Path E dogfood: put the metadata in a `|Field|Value|` table at the top of each page. Humans see it; agents parse it; no MCP gap.
+3. **SharePoint has no native wiki-link.** Cross-linking is via sharing URLs or a `Related` lookup column. No graph view. The conceptual connections still work, just flatter.
+4. **Cloud KBs can't run local Claude Code skills.** Notion / Confluence / SharePoint agents are not invoking `.claude/skills/` from your local disk. For Challenge 2, these paths build Custom Instructions (Claude.ai) / Saved Prompts (ChatGPT) / Copilot agents instead.
+5. Path B free if using Claude Code for OAuth; the Notion MCP connector in Claude Desktop requires a Pro / Max / Team / Enterprise plan.
+6. Path E free on all Atlassian Cloud plans (500 calls / hour on Free). API token required for the sooperset fallback; tokens now expire (default 365 days).
+
+---
+
 ## What they get regardless of path
 
 All five paths end with the same conceptual setup:

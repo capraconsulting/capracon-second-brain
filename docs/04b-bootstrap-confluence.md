@@ -109,14 +109,24 @@ Requires Node.js 18+. First run opens a browser for Atlassian OAuth consent. Pic
 **Claude Code one-liner** (no config file):
 
 ```bash
-claude mcp add --transport http atlassian https://mcp.atlassian.com/v1/mcp
+claude mcp add --transport http --scope user atlassian https://mcp.atlassian.com/v1/mcp
 ```
 
 Then run `/mcp` in the session to finish the OAuth flow.
 
+> **Why `--scope user`?** Without it, the MCP is added only to the current project. `--scope user` makes it available across every Claude Code session, which is what most participants want for a knowledge-base MCP (you'll hit your vault from many directories over time).
+
 **Tenant-lockdown warning.** The first user in a tenant to consent must have rights to install Marketplace apps. Many Capra clients have this disabled -- the OAuth flow errors with a generic "app not authorized" message. If that happens, jump to Step 2b.
 
-**Ops the Rovo MCP supports**: create page, update page, search (Rovo Search + Fetch semantic), summarize page, list spaces, plus Jira ops you won't need today. Labels and content properties are not called out in the public tool list; fall back to raw REST for those when needed.
+**Ops the Rovo MCP supports**: create page, update page, search (Rovo Search + Fetch semantic), summarize page, list spaces, plus Jira ops you won't need today.
+
+**Ops the Rovo MCP does NOT support** (confirmed during dogfood 22.04.2026): **labels** and **content properties**. `conventions-confluence.md` says every page should carry a type label (plus optional status + tag labels) and structured fields like `author`, `source`, `due`, `last_updated` as content properties. You have three ways to cover the gap:
+
+1. **Inline metadata table at the top of the page** (easiest). Put a two-column `|Field|Value|` table with `type`, `status`, `tags`, `author`, `source` etc. Humans see it rendered; agents parse it as CQL-searchable text. This is what the Path E dogfood used; pages still link and backlink correctly.
+2. **Raw REST** (strict convention fidelity). After creating a page with the MCP, hit `POST /wiki/rest/api/content/{id}/label` with an API token for labels, `PUT /wiki/rest/api/content/{id}/property/{key}` for content properties. Needs a token from <https://id.atlassian.com/manage-profile/security/api-tokens>.
+3. **Switch to the sooperset MCP** (Step 2b). Covers labels and properties natively. Worth it if labels are load-bearing for your workflow (e.g. you rely on a Page Properties Report macro).
+
+> **Flag to participants upfront**: if they pick Path E and lean on labels for search / filtering, they need a plan from day one -- not a half-configured setup where labels are missing.
 
 ---
 

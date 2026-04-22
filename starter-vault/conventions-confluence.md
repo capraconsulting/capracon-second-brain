@@ -80,7 +80,8 @@ For fields humans should see (not just agents), use the **Page Properties macro*
 The value of this space is in **connections**, not isolated pages.
 
 - ALWAYS use **inline page links** for internal references, never raw URLs or markdown links.
-- In storage format: `<ac:link><ri:page ri:content-title="Target Page Title"/><ac:link-body>Display text</ac:link-body></ac:link>` (omit `ac:link-body` to auto-use the page title). In ADF, use an `inlineCard` block with the page URL.
+- **Easiest shortcut via the MCP**: feed markdown content with a regular link target (`[Display text](https://<site>.atlassian.net/wiki/spaces/.../pages/<id>)`). Confluence auto-resolves the URL to a proper `<ac:link><ri:page ... /></ac:link>` reference on save, no hand-written storage-format XML needed. Confirmed in dogfood 22.04.2026.
+- Direct storage-format form, for reference: `<ac:link><ri:page ri:content-title="Target Page Title"/><ac:link-body>Display text</ac:link-body></ac:link>` (omit `ac:link-body` to auto-use the page title). In ADF, use an `inlineCard` block with the page URL.
 - ALWAYS include 2-3+ outgoing inline page links per page.
 - After creating a page, Confluence's Backlinks panel shows the inverse automatically (no manual bidirectional work required, unlike Obsidian).
 - Link across type boundaries: projects -> people, learnings -> decisions.

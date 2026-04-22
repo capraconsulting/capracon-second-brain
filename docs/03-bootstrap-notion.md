@@ -205,7 +205,7 @@ Challenge 2 (build skills) needs adaptation: Notion has no equivalent of Claude 
 |---------|-----|
 | `/mcp` says "No MCP servers configured" | Claude Code was not restarted after `claude mcp add`. Quit and reopen, then `claude --continue` to resume. |
 | "No Notion pages found" (local MCP) | Integration not shared with the parent page. Open the page in Notion -> Connections -> add the integration. |
-| OAuth loop in Claude Code | Stale session. `claude mcp remove notion` and re-add, then restart. |
+| OAuth loop in Claude Code | Stale session. `claude mcp remove notion` and re-add, then restart Claude Code. |
 | Remote connector option missing in Claude Desktop | Free plan. Upgrade, or use Claude Code instead. |
 | `unauthorized` / 401 (local MCP) | Token is wrong, missing `ntn_` prefix, or was regenerated. Paste the current one from <https://www.notion.so/profile/integrations>. |
 | Agent creates pages in the wrong place | The conventions doc was not loaded. Paste "Vault Instructions" directly into the chat and retry. |

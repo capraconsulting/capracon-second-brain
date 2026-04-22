@@ -88,7 +88,15 @@ Notion runs a hosted MCP server at `https://mcp.notion.com/mcp`. OAuth handles a
 claude mcp add --transport http notion https://mcp.notion.com/mcp
 ```
 
-Then inside a Claude Code session, run `/mcp` and complete the OAuth flow in the browser. Add `--scope user` if they want it available across all projects.
+> **Important:** Claude Code reads MCP config at startup. After running this command you **must restart Claude Code** before the server is available.
+>
+> To resume this session after restart, run:
+> ```bash
+> claude --continue
+> ```
+> This picks up the most recent conversation so you do not have to re-run the stack quiz.
+
+Once restarted, run `/mcp` inside the session and complete the OAuth flow in the browser. Notion will ask which pages to grant access to -- pick the **"Second Brain"** parent page (or the whole workspace). Add `--scope user` to the original `mcp add` command if you want it available across all projects, not just this one.
 
 **Claude Desktop** (claude.ai app): Settings -> **Connectors** -> add Notion. The connector is built in.
 
@@ -107,8 +115,6 @@ Then inside a Claude Code session, run `/mcp` and complete the OAuth flow in the
   }
 }
 ```
-
-During OAuth, Notion asks which pages / workspaces the agent should access. Pick the **"Second Brain"** parent page (or the whole workspace if they are brave).
 
 ---
 
@@ -197,8 +203,9 @@ Challenge 2 (build skills) needs adaptation: Notion has no equivalent of Claude 
 
 | Problem | Fix |
 |---------|-----|
+| `/mcp` says "No MCP servers configured" | Claude Code was not restarted after `claude mcp add`. Quit and reopen, then `claude --continue` to resume. |
 | "No Notion pages found" (local MCP) | Integration not shared with the parent page. Open the page in Notion -> Connections -> add the integration. |
-| OAuth loop in Claude Code | Stale session. `claude mcp remove notion` and re-add. |
+| OAuth loop in Claude Code | Stale session. `claude mcp remove notion` and re-add, then restart. |
 | Remote connector option missing in Claude Desktop | Free plan. Upgrade, or use Claude Code instead. |
 | `unauthorized` / 401 (local MCP) | Token is wrong, missing `ntn_` prefix, or was regenerated. Paste the current one from <https://www.notion.so/profile/integrations>. |
 | Agent creates pages in the wrong place | The conventions doc was not loaded. Paste "Vault Instructions" directly into the chat and retry. |

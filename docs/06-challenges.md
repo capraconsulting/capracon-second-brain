@@ -2,6 +2,8 @@
 
 > The two workshop challenges. Challenge 1 is **Capture**. Challenge 2 is **Customize**. Both are 30 minutes. Both are intentionally open-ended.
 
+**Stuck at any point?** Flag down **Magnus**, **Rune**, or **Vemund**. They are on the floor with help, tips, and inspiration. That is the fastest way through a wall.
+
 ---
 
 ## Challenge 1: Capture a YouTube video into your second brain
@@ -108,4 +110,4 @@ Both skills are in `.claude/skills/`. Both have a valid `SKILL.md` with a clear 
 
 Keep it under 3 min each. The crew picks who goes based on variety (different paths, different use cases).
 
-Then point everyone at `docs/07-going-further.md` and invite them to keep using the Slack follow-up channel.
+Then point everyone at `docs/07-going-further.md` for habit-building tips and next steps.

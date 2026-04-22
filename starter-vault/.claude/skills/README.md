@@ -4,14 +4,14 @@ Skills bundled with the starter-vault. They travel with the vault when the parti
 
 ## Bundled (workshop-critical)
 
-| Skill | Source | Used for |
-|-------|--------|----------|
-| `obsidian-vault` | `~/.claude/skills/obsidian-vault` | Core vault conventions (frontmatter, linking, folder layout). Referenced by `starter-vault/CLAUDE.md`. |
-| `youtube-transcribe` | `~/dev/personal/vault/.claude/skills/youtube-transcribe` | Challenge 1: YouTube -> transcript -> Learning note |
-| `skill-creator` | `~/.claude/skills/skill-creator` (canonical: dotfiles) | Challenge 2: scaffolding new skills |
-| `brainstorming` | [obra/superpowers](https://github.com/obra/superpowers) | Helps participants think through what skill to build in Challenge 2 |
+| Skill | Used for |
+|-------|----------|
+| `obsidian-vault` | Core vault conventions (frontmatter, linking, folder layout). Referenced by `starter-vault/CLAUDE.md`. |
+| `youtube-transcribe` | Challenge 1: YouTube -> transcript -> Learning note. Requires `yt-dlp` (`brew install yt-dlp`). |
+| `skill-creator` | Challenge 2: scaffolding new skills. |
+| `brainstorming` | Helps you think through what skill to build in Challenge 2. Sourced from [obra/superpowers](https://github.com/obra/superpowers). |
 
-These four are small (~144 KB total, 18 files) and vendored because the workshop has a 15-minute bootstrap window where a network install is a preventable risk.
+These four are small (~144 KB total, 18 files) and ship with the vault so they work offline.
 
 ## Optional (install post-workshop if you want Office exports)
 

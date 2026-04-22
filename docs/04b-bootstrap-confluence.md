@@ -112,7 +112,17 @@ Requires Node.js 18+. First run opens a browser for Atlassian OAuth consent. Pic
 claude mcp add --transport http --scope user atlassian https://mcp.atlassian.com/v1/mcp
 ```
 
-Then run `/mcp` in the session to finish the OAuth flow.
+> **Important:** Claude Code reads MCP config at startup. After running this command you **must restart Claude Code** before the server is available.
+>
+> To resume this session after restart, run:
+> ```bash
+> claude --continue
+> ```
+> This picks up the most recent conversation so you do not have to re-run the stack quiz.
+
+Once restarted, run `/mcp` to finish the OAuth flow in the browser.
+
+> **Critical -- site selection.** Atlassian OAuth will ask which site(s) to grant access to. If you have more than one Atlassian site (common for consultants with client tenants), make sure you select the site that contains your "Second Brain" space. Picking the wrong site is the most common cause of "space not found" errors after authentication.
 
 > **Why `--scope user`?** Without it, the MCP is added only to the current project. `--scope user` makes it available across every Claude Code session, which is what most participants want for a knowledge-base MCP (you'll hit your vault from many directories over time).
 
@@ -234,6 +244,8 @@ Go to `docs/06-challenges.md`.
 
 | Problem | Fix |
 |---------|-----|
+| `/mcp` says "No MCP servers configured" | Claude Code was not restarted after `claude mcp add`. Quit and reopen, then `claude --continue` to resume. |
+| Space not found after successful auth | Wrong Atlassian site selected during OAuth. `claude mcp remove atlassian`, re-add, restart, and pick the correct site in the browser. |
 | OAuth loops or "app not authorized" on Rovo MCP | Tenant blocks Marketplace installs. Use Step 2b (sooperset + API token). |
 | Cloud vs Data Center confusion | Rovo MCP is Cloud-only. For DC, use `sooperset/mcp-atlassian` with a PAT. |
 | Agent silently 401s weeks later | API token expired. Tokens default to 365 days (used to be forever). Regenerate. |

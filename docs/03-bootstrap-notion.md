@@ -96,7 +96,11 @@ claude mcp add --transport http notion https://mcp.notion.com/mcp
 > ```
 > This picks up the most recent conversation so you do not have to re-run the stack quiz.
 
-Once restarted, run `/mcp` inside the session and complete the OAuth flow in the browser. Notion will ask which pages to grant access to -- pick the **"Second Brain"** parent page (or the whole workspace). Add `--scope user` to the original `mcp add` command if you want it available across all projects, not just this one.
+Once restarted, run `/mcp` inside the session and complete the OAuth flow in the browser.
+
+> **Critical -- workspace selection.** If you have more than one Notion workspace, the browser will ask which one to connect to. Make sure you select the workspace that contains your **"Second Brain"** page. Picking the wrong workspace is the most common cause of "page not found" errors after authentication.
+
+Notion will then ask which pages to grant access to -- pick the **"Second Brain"** parent page (or the whole workspace). Add `--scope user` to the original `mcp add` command if you want it available across all projects, not just this one.
 
 When `/mcp` reports **"Authentication successful"**, MCP is ready. Tell the agent:
 
@@ -209,6 +213,7 @@ Challenge 2 (build skills) needs adaptation: Notion has no equivalent of Claude 
 |---------|-----|
 | `/mcp` says "No MCP servers configured" | Claude Code was not restarted after `claude mcp add`. Quit and reopen, then `claude --continue` to resume. |
 | "No Notion pages found" (local MCP) | Integration not shared with the parent page. Open the page in Notion -> Connections -> add the integration. |
+| Page not found after successful auth | Wrong workspace selected during OAuth. `claude mcp remove notion`, re-add, restart, and pick the correct workspace in the browser. |
 | OAuth loop in Claude Code | Stale session. `claude mcp remove notion` and re-add, then restart Claude Code. |
 | Remote connector option missing in Claude Desktop | Free plan. Upgrade, or use Claude Code instead. |
 | `unauthorized` / 401 (local MCP) | Token is wrong, missing `ntn_` prefix, or was regenerated. Paste the current one from <https://www.notion.so/profile/integrations>. |

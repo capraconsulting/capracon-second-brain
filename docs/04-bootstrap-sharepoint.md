@@ -1,5 +1,8 @@
 # 04 - Bootstrap: SharePoint / OneDrive + Copilot (Path C)
 
+> [!WARNING]
+> **This path is untested in practice.** SharePoint/OneDrive integration involves tenant admin permissions, Entra app registration, and enterprise tooling that varies wildly between client environments. The steps below are our best guidance, but we have not been able to run through this end-to-end in a real tenant. **You are on your own here** — if you get stuck, flag one of the crew on the floor (Magnus, Rune, or Vemund) and consider switching to Path B (Notion) or Path D (Obsidian) for today's workshop.
+
 > **For the agent.** Path C participant is enterprise-locked. They cannot install software, cannot register an Entra app on their own, and often cannot even run a local MCP client. Everything has to work through what the client tenant already gives them. Target time: 15 minutes.
 
 ---

@@ -9,7 +9,7 @@
 ## Challenge 1: Capture a YouTube video into your second brain
 
 **Time:** 30 minutes
-**Deliverable:** one new note in `Learning/` (or equivalent) with frontmatter, 2-3 `[[wiki links]]`, and at least one link back from an older note.
+**Deliverable:** one new note in `Learning/` (or equivalent) with frontmatter, substantial content (summary + takeaways + "How I'll Apply This"), and at least one meaningful `[[wiki link]]` to related content. Quality of the link matters more than count.
 
 ### Flow
 
@@ -19,9 +19,10 @@
 3. **Ask for a personalized extraction.** Example: *"Extract the key learnings for someone who is a [consultant / backend engineer / product lead / whatever you are] currently focused on [your current focus]."* Personalization matters - it turns a generic summary into something you will actually reread.
 4. **Have the agent write the note** in `Learning/` using `Templates/Learning.md` as the structure. Verify:
    - Correct frontmatter (`type: learning`, today's date, `source:` URL, `author:` channel name, `status: draft`)
-   - At least 2-3 `[[wiki links]]` to related concepts (even if the target notes do not exist yet)
+   - At least one `[[wiki link]]` to a related concept. Add more only when the connection is real — do not let the agent pad the note with links to hit a count.
+   - **Ghost-link check:** if the note contains any `[[wikilinks]]` to files that do not exist yet, the line containing the link must be either (a) a bare link with no gloss, or (b) a direct quote/fact from the source with attribution. No agent-authored paraphrases dressed up as facts.
    - A "How I'll Apply This" section that is specific, not generic
-5. **Update an older note** with a backlink to this one. If the vault is empty, create one quick related note first, then link both directions.
+5. **If you have an older note that genuinely relates**, add a backlink. If the vault is empty or nothing honestly relates, skip this step. A forced backlink is noise, and you will not be able to tell it apart from a real one in Graph View later.
 
 ### What "done" looks like
 

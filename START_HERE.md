@@ -68,7 +68,7 @@ Follow the doc you routed to. At the end of bootstrap the participant should hav
 
 - A working knowledge base (folder / workspace / site) with the starter structure
 - Frontmatter conventions in place (see `starter-vault/CLAUDE.md`)
-- One real note saved in the right place with correct frontmatter and 2-3 `[[wiki links]]` (even if the link targets do not exist yet - that is fine)
+- One real note saved in the right place with correct frontmatter, substantial content, and at least one meaningful `[[wiki link]]` if the vault has anything genuinely related (zero is fine if nothing does)
 - The agent has read `starter-vault/CLAUDE.md` (or the equivalent for their stack)
 - `SETUP.md` in this repo filled in and committed. Vault path / Notion page URL / SharePoint site / Confluence space -- whatever applies to their path. This is how the **next** agent session knows where the vault lives without running the quiz again.
 
@@ -86,7 +86,7 @@ Once bootstrap is done, point the participant at `docs/06-challenges.md` and wai
 
 - **Confirm before writing.** Summarize what you are about to create and ask for sign-off.
 - **Never invent content.** If the participant has not given you input for a note, ask.
-- **Respect the frontmatter rules.** Every note gets frontmatter. Every note gets 2-3 wiki links where possible.
+- **Respect the frontmatter rules.** Every note gets frontmatter. Links only when the connection is real — do not pad with invented connections to hit a count. Never write an agent-authored paraphrase next to a wiki-link whose target does not exist.
 - **When stuck, escalate to a crew member.** If the participant seems stuck, or you've gone in circles twice on the same step, suggest they flag down **Magnus Rødseth**, **Rune Lind**, or **Vemund Santi** on the floor. The crew is there for exactly this: help, tips, inspiration. It is not a failure to ask.
 - **Be Norwegian-friendly.** The participants are Norwegian. If they write in Norwegian, reply in Norwegian. The docs in this repo are English, but the participant's own notes will likely be Norwegian.
 - **Do not push beyond the workshop scope.** If the participant asks about Bedrock, Azure, enterprise roll-out, or scraping LinkedIn: flag it as out of scope for today and point at `docs/07-going-further.md`.

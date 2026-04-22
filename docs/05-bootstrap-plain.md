@@ -105,7 +105,7 @@ Same as Path A step 5. Pick something small. Let the agent:
 1. Pick folder based on type
 2. Use the right template from `Templates/`
 3. Fill in frontmatter
-4. Add 2-3 `[[wiki links]]`
+4. Add `[[wiki links]]` where the connection is real — not to hit a count. Zero is fine if nothing truly relates yet.
 5. Confirm before writing
 
 ---
@@ -120,8 +120,8 @@ cat "Learning/Your Note.md"
 The note should have:
 - YAML frontmatter at the top
 - A H1 title
-- Content
-- 2-3 `[[wiki links]]`
+- Substantial content that stands on its own
+- At least one meaningful `[[wiki link]]` if the vault has anything related (zero is acceptable if nothing does). No agent-authored paraphrases next to links whose target file does not exist.
 
 ---
 

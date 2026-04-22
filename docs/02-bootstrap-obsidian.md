@@ -131,7 +131,7 @@ Then, with the participant, create the note. Claude should:
 1. Pick the correct folder based on type (`Learning/`, `Meetings/`, `Notes/`, etc.)
 2. Use the right template from `Templates/`
 3. Fill in frontmatter with today's date (`DD.MM.YYYY`)
-4. Add 2-3 `[[wiki links]]` (even if the targets do not exist yet - Obsidian shows them as yellow until you create them)
+4. Add `[[wiki links]]` where the connection is real — not to hit a count. Zero links is fine if nothing in the vault truly relates yet. If a link target does not exist, leave the link bare (no paraphrased gloss next to it); Obsidian shows unresolved links in yellow until you create them.
 5. Confirm with the participant before writing to disk
 
 ---

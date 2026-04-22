@@ -78,15 +78,28 @@ Philosophy: tags answer *"what kind of thing is this?"*, links answer *"what is 
 
 ---
 
-## Linking rules (CRITICAL)
+## Linking rules
 
 SharePoint has no native wiki-link syntax. Use **sharing URLs** or **Related lookup** entries to cross-link.
 
-- ALWAYS add 2-3+ outgoing links per document: sharing URL or a value in the `Related` lookup column.
-- After creating a doc, update 1-2 existing related docs to link back.
-- Link across library boundaries: projects -> people, learnings -> decisions.
+The value of this site is in **real** connections. Manufactured links produce a library that looks rich but is padded with agent guesses you will later mistake for knowledge you put there yourself.
 
-A doc with no outgoing links is an orphan. Orphans pull the graph apart.
+- **Link when the connection is real.** A document with substantial content and 1 honest cross-link beats a document with thin content and 7 invented ones. Do not add links to hit a count.
+- **Search before concluding a doc is isolated.** If a draft has 0 cross-links, search the site again for synonyms and related names. If nothing relevant exists, leave it unlinked — that is not a failure.
+- The `Related` lookup column is **optional**. Use it only for relationships the body does not already express via inline sharing URLs. Do not duplicate.
+- **Backlinks only when reciprocal.** Update an older document to link back only if the reverse link is also meaningful.
+
+### Ghost-link discipline (CRITICAL)
+
+A ghost-link in SharePoint is a sharing URL or `Related` entry that points to a document or page that does not exist yet. Ghost-links themselves are fine as forcing functions.
+
+What is **not** fine: writing a paraphrased gloss next to a ghost-link that makes a factual claim the source cannot back. Example of what to avoid: `Pilot to Production — why 75% of AI pilots don't scale` (with a broken sharing URL) when the source actually said "25% moved 40%+ into production." The inverted number is an agent interpretation that now lives in the site as if it were fact.
+
+Acceptable patterns:
+1. **Bare ghost-link:** the URL or `Related` entry with no paraphrased gloss next to it.
+2. **Stub document with direct source quote:** create the target document immediately with 1-2 lines quoting or citing the source, attributed.
+
+Never let Copilot write an agent-authored paraphrase next to a ghost-link whose target is empty. That is how hallucinations enter the site disguised as linked knowledge.
 
 ---
 
@@ -111,8 +124,9 @@ A doc with no outgoing links is an orphan. Orphans pull the graph apart.
 ## Hard rules
 
 - NEVER create a document without setting `Type` (and `Status` where applicable).
+- NEVER write an agent-authored paraphrase next to a ghost-link. Bare link, or real stub.
 - ALWAYS search before creating.
-- ALWAYS add cross-links (sharing URLs or Related entries).
+- LINK when the connection is real, not to hit a count.
 - PREFER short, atomic documents (one idea per document) over long reports.
 - Column **internal names** differ from display names. List the columns first before asking an agent to set fields.
 

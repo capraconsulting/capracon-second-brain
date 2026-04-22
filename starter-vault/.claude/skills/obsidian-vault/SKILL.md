@@ -77,13 +77,25 @@ Hierarchical tags for cross-cutting concerns:
 - Meetings: `YYYY-MM-DD Meeting Topic.md`
 - Daily: `YYYY-MM-DD.md`
 
-## Linking Rules (CRITICAL)
+## Linking Rules
 
-- **ALWAYS** use `[[wiki links]]` for internal references — never markdown links
-- **ALWAYS** include 2-3+ outgoing `[[wikilinks]]` per note
-- **ALWAYS** populate `related: []` in frontmatter with 2-3 related note names
-- After creating a note, **update 1-2 existing related notes** to link back (bidirectional)
-- Link across folders/domains — connect projects to people, learnings to decisions
+- **ALWAYS** use `[[wiki links]]` for internal references, never markdown links
+- **Link when the connection is real.** A note with substantial content and 1 honest link beats a note with thin content and 7 invented links. Do not add links to hit a count.
+- **Search before concluding a note is isolated.** If a draft has 0 links, search the vault again for synonyms and related names. If nothing relevant exists, leave the note unlinked — that is not a failure.
+- `related:` in frontmatter is **optional**. Use it only for relationships the body does not already express via inline `[[wikilinks]]`. Do not duplicate.
+- **Backlinks only when reciprocal.** Update an older note to link back only if the reverse link is also meaningful.
+
+### Ghost-link discipline (CRITICAL)
+
+A ghost-link is a `[[wikilink]]` pointing to a file that does not exist yet. Ghost-links themselves are fine — Obsidian tracks them in Unresolved Links and they act as forcing functions.
+
+What is **not** fine: writing a paraphrased gloss next to a ghost-link that makes a factual claim the source cannot back. Example of the failure mode: writing `- [[Pilot to Production]] — why 75% of AI pilots don't scale` when the source actually said "25% moved 40%+ into production." The inverted number is an agent interpretation that now lives in the vault as if it were fact.
+
+Acceptable patterns:
+1. **Bare ghost-link:** `[[Pilot to Production]]` with no gloss.
+2. **Stub with direct source quote:** create the target file with 1-2 lines quoting or citing the source, attributed.
+
+Never write an agent-authored paraphrase next to a ghost-link whose target file is empty. That is how hallucinations enter the vault disguised as linked knowledge.
 
 ## Note Templates
 

@@ -74,17 +74,27 @@ Philosophy: tags answer *"what kind of thing is this?"*, links answer *"what is 
 
 ---
 
-## Linking rules (CRITICAL)
+## Linking rules
 
-The value of this vault is in **connections**, not isolated pages.
+The value of this vault is in **real** connections. Manufactured links produce a graph that looks rich but is padded with agent guesses you will later mistake for knowledge you put there yourself.
 
 - ALWAYS use `@page` mentions (inline page links) for internal references, never raw URLs or markdown links.
-- ALWAYS include 2-3+ outgoing `@page` mentions per page.
-- ALWAYS populate the `related` property (2-3 entries).
-- After creating a page, update 1-2 existing related pages to link back. Notion's Backlinks panel auto-shows inverse links, but only if the forward link exists.
-- Link across page-type boundaries: projects -> people, learnings -> decisions.
+- **Link when the connection is real.** A page with substantial content and 1 honest `@mention` beats a page with thin content and 7 invented mentions. Do not add mentions to hit a count.
+- **Search before concluding a page is isolated.** If a draft has 0 mentions, search Notion again for synonyms and related names. If nothing relevant exists, leave the page unlinked — that is not a failure.
+- The `related` property is **optional**. Use it only for relationships the body does not already express via inline `@mentions`. Do not duplicate.
+- **Backlinks only when reciprocal.** Update an older page to link back only if the reverse link is also meaningful. Notion's Backlinks panel shows inverse links automatically — do not manually add inverse mentions that are not genuinely relevant on both sides.
 
-If a page has 0-1 outgoing links, it is an orphan. Orphans pull the graph apart.
+### Ghost-link discipline (CRITICAL)
+
+A ghost-link in Notion is an `@page` mention to a page that does not exist yet (Notion offers "Create new page" inline — the mention resolves once you do). Ghost-mentions themselves are fine as forcing functions.
+
+What is **not** fine: writing a paraphrased gloss next to a ghost-mention that makes a factual claim the source cannot back. Example: writing `@Pilot to Production — why 75% of AI pilots don't scale` when the source actually said "25% moved 40%+ into production." The inverted number is an agent interpretation that now lives in the vault as if it were fact.
+
+Acceptable patterns:
+1. **Bare ghost-mention:** `@Pilot to Production` with no gloss.
+2. **Stub with direct source quote:** create the target page immediately with 1-2 lines quoting or citing the source, attributed.
+
+Never write an agent-authored paraphrase next to a ghost-mention whose target page is empty. That is how hallucinations enter the vault disguised as linked knowledge.
 
 ---
 
@@ -110,8 +120,9 @@ If a page has 0-1 outgoing links, it is an orphan. Orphans pull the graph apart.
 
 - NEVER create a page without setting `type` (and `status` where applicable).
 - NEVER use markdown `[text](URL)` for links to other pages in this vault. Use `@page` mentions.
+- NEVER write an agent-authored paraphrase next to a ghost-mention. Bare mention, or real stub.
 - ALWAYS search before creating.
-- ALWAYS add `@page` mentions and populate `related`.
+- LINK when the connection is real, not to hit a count.
 - PREFER short, atomic pages (one idea per page) over long documents.
 
 ---

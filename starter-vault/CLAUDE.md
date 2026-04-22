@@ -85,17 +85,29 @@ Philosophy: tags answer *"what kind of thing is this?"* - links answer *"what is
 
 ---
 
-## Linking Rules (CRITICAL)
+## Linking Rules
 
-The value of this vault is in **connections**, not isolated notes.
+The value of this vault is in **real** connections. Manufactured links are worse than no links: they produce a graph that looks rich but is padded with agent guesses, which you will later mistake for knowledge you put there yourself.
 
 - **ALWAYS** use `[[wiki links]]` for internal references, never markdown links
-- **ALWAYS** include 2-3+ outgoing `[[wikilinks]]` per note
-- **ALWAYS** populate `related: []` in frontmatter with 2-3 related note names
-- After creating a note, update 1-2 existing related notes to link back (bidirectional)
-- Link across folders: connect projects to people, learnings to decisions, etc.
+- **Link when the connection is real.** A note with substantial content and 1 honest link is better than a note with thin content and 7 invented links. Do not add links to hit a count.
+- **Search before concluding a note is isolated.** If a draft seems to have 0 links, search the vault again: the target may exist under a different name or a synonym. If nothing relevant exists, leave the note unlinked. That is not a failure.
+- **Link across folders when it is genuine** (projects to people, learnings to decisions). Do not stretch.
+- `related:` in frontmatter is **optional**. Use it only for relationships the body does not already express via inline `[[wikilinks]]`. Do not duplicate.
+- **Backlinks only when reciprocal.** Update an older note to link back only if the reverse link is also meaningful. Forced bidirectional links are ghost-links with extra steps.
 
-If a note has 0-1 outgoing links, it is an orphan. Orphans pull the graph apart. Always search the vault for related content before finishing a note.
+### Ghost-link discipline (CRITICAL)
+
+A ghost-link is a `[[wikilink]]` pointing to a file that does not exist yet. Ghost-links themselves are fine: Obsidian tracks them in the Unresolved Links pane, and they can act as forcing functions for notes you plan to write later.
+
+What is **not** fine: writing a paraphrased gloss next to a ghost-link that makes a factual claim. Example of what to avoid: an agent writing `- [[Pilot to Production]] — why 75% of AI pilots don't scale` when the source actually said "25% moved 40%+ of experiments into production." The inverted 75% number is an agent interpretation, not a fact from the source, but it now lives in the vault as if it were one. Six months from now you will quote it to a colleague and you will be wrong.
+
+Two acceptable patterns:
+
+1. **Bare ghost-link.** Just `[[Pilot to Production]]` with no gloss. The link is a placeholder; you will write content when you have something honest to say.
+2. **Stub with direct fact.** Create `Pilot to Production.md` immediately with 1-2 lines that quote or cite the source directly, with attribution (e.g. "Deloitte 2026, p. 8: 25% of enterprises have moved 40%+ of AI experiments into production").
+
+Never: an agent-authored paraphrase living next to a ghost-link, where the target file is empty and the gloss is the only content. That is how hallucinations enter the vault disguised as linked knowledge.
 
 ---
 
@@ -121,8 +133,9 @@ If a note has 0-1 outgoing links, it is an orphan. Orphans pull the graph apart.
 
 - NEVER create a note without frontmatter
 - NEVER use markdown-style `[text](link)` for internal links
+- NEVER write an agent-authored paraphrase next to a ghost-link. Bare link, or real stub.
 - ALWAYS search before creating
-- ALWAYS add wiki links and populate `related:`
+- LINK when the connection is real, not to hit a count
 - PREFER short, atomic notes (one idea per note) over long documents
 
 ---
